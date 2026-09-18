@@ -19,8 +19,8 @@
 
 {%- if product_group and product_group.videos.value != blank -%}
   {%- liquid
-    assign option_1 = product.metafields.custom.group_option_1.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip
-    assign option_2 = product.metafields.custom.group_option_2.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip
+    assign option_1 = product.metafields.custom.group_option_1.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | split: ' ' | join: ' '
+    assign option_2 = product.metafields.custom.group_option_2.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | split: ' ' | join: ' '
     assign padded_option_1 = ' ' | append: option_1 | append: ' '
     assign padded_option_2 = ' ' | append: option_2 | append: ' '
   -%}
@@ -32,7 +32,7 @@
           continue
         endif
 
-        assign alt = video.alt | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip_newlines
+        assign alt = video.alt | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip_newlines | split: ' ' | join: ' '
         assign padded_alt = ' ' | append: alt | append: ' '
 
         assign is_match = false

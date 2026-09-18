@@ -1,0 +1,73 @@
+.product-group-picker__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.product-group-picker__swatches .form__label {
+  margin-bottom: 0.4rem;
+}
+
+.product-group-picker__swatch {
+  display: block;
+  position: relative;
+  width: 6.4rem;
+  height: 6.4rem;
+  padding: 0.3rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  border-radius: 0.8rem;
+  background-color: rgb(var(--color-background));
+  cursor: pointer;
+  transition: border-color var(--duration-short) ease;
+}
+
+.product-group-picker__swatch img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.product-group-picker__swatches input[type='radio'] + .product-group-picker__swatch:hover {
+  border-color: rgb(var(--color-foreground));
+}
+
+.product-group-picker__swatches input[type='radio']:checked + .product-group-picker__swatch {
+  padding: 0.2rem;
+  border: 0.2rem solid rgb(var(--color-foreground));
+}
+
+.product-group-picker__swatches input[type='radio'].disabled + .product-group-picker__swatch {
+  opacity: 0.45;
+  border-style: dashed;
+}
+
+.product-group-picker__swatches input[type='radio']:focus-visible + .product-group-picker__swatch {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.55);
+  outline-offset: 0.2rem;
+}
+
+/* Greyed out (Amazon-style) instead of the theme's strikethrough for sizes that don't exist. */
+.product-group-picker .product-form__input--pill input[type='radio'].disabled:not(:checked) + label {
+  border-style: dashed;
+  border-color: rgba(var(--color-foreground), 0.3);
+  background-color: rgba(var(--color-foreground), 0.04);
+  color: rgba(var(--color-foreground), 0.45);
+  text-decoration: none;
+}
+
+.product-group-picker .product-form__input--pill input[type='radio'] + .product-group-picker__pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 1.2rem;
+}
+
+.product-group-picker__pill-detail {
+  font-size: 1.2rem;
+  letter-spacing: 0.04rem;
+  opacity: 0.75;
+}
