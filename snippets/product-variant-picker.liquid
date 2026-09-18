@@ -8,7 +8,30 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
-{%- unless product.has_only_default_variant -%}
+{%- liquid
+  assign product_group = nil
+  if product.has_only_default_variant
+    for group_entry in shop.metaobjects.product_group.values
+      for group_product in group_entry.products.value
+        if group_product.id == product.id
+          assign product_group = group_entry
+          break
+        endif
+      endfor
+      if product_group
+        break
+      endif
+    endfor
+  endif
+-%}
+{%- if product_group -%}
+  {% render 'product-group-picker',
+    product: product,
+    group: product_group,
+    block: block,
+    product_form_id: product_form_id
+  %}
+{%- elsif product.has_only_default_variant == false -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -91,4 +114,4 @@
       {{ product.selected_or_first_available_variant | json }}
     </script>
   </variant-selects>
-{%- endunless -%}
+{%- endif -%}
