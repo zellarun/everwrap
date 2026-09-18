@@ -20,6 +20,8 @@
   Usage:
   {% render 'product-group-picker', product: product, group: group, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+{%- comment -%} main-product only loads the pill styles for products with their own variants. {%- endcomment -%}
+{{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-group-picker.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
@@ -33,6 +35,54 @@
     {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
   </span>
 {%- endcapture -%}
+
+{%- if request.design_mode -%}
+  {%- liquid
+    assign issues = ''
+    assign group_name = group.name.value | default: group.system.handle
+    assign values_1 = group.option_1_values.value
+    assign values_2 = group.option_2_values.value
+    assign details_2 = group.option_2_details.value
+    assign option_2_name = group.option_2_name.value | strip
+
+    if group.option_1_name.value == blank
+      assign issues = issues | append: 'The "' | append: group_name | append: '" group entry has no Option 1 name.|'
+    endif
+    if current_1 == blank
+      assign issues = issues | append: 'Group option 1 is empty on this product.|'
+    elsif values_1 != blank
+      unless values_1 contains current_1
+        assign issues = issues | append: '"' | append: current_1 | append: '" (Group option 1) isn’t in the group’s Option 1 values. Check spelling and capitals.|'
+      endunless
+    endif
+    if option_2_name != blank
+      if current_2 == blank
+        assign issues = issues | append: 'Group option 2 is empty on this product.|'
+      elsif values_2 != blank
+        unless values_2 contains current_2
+          assign issues = issues | append: '"' | append: current_2 | append: '" (Group option 2) isn’t in the group’s Option 2 values. Check spelling and capitals.|'
+        endunless
+      endif
+      if details_2 != blank and details_2.size != values_2.size
+        assign issues = issues | append: 'Option 2 details has ' | append: details_2.size | append: ' entries but Option 2 values has ' | append: values_2.size | append: '.|'
+      endif
+    endif
+    if siblings.size < 2
+      assign issues = issues | append: 'Only ' | append: siblings.size | append: ' product in this group is visible to the store (unpublished products are hidden).|'
+    endif
+    assign issues = issues | split: '|'
+  -%}
+  {%- if issues.size > 0 -%}
+    <div class="product-group-picker__notice">
+      <strong>Product group setup (only visible in the theme editor):</strong>
+      <ul>
+        {%- for issue in issues -%}
+          <li>{{ issue | escape }}</li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+{%- endif -%}
 
 <variant-selects
   id="variant-selects-{{ section.id }}"

@@ -71,3 +71,19 @@
   letter-spacing: 0.04rem;
   opacity: 0.75;
 }
+
+.product-group-picker__notice {
+  margin: 0 0 1.6rem;
+  padding: 1.2rem 1.6rem;
+  border: 0.1rem dashed #b7791f;
+  border-radius: 0.8rem;
+  background-color: #fffbeb;
+  color: #744210;
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.product-group-picker__notice ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.8rem;
+}
