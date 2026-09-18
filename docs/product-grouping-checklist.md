@@ -38,6 +38,7 @@ Settings → Custom data → **Metaobjects** → Add definition
   | Option 2 name | `option_2_name` | Single line text |
   | Option 2 values | `option_2_values` | Single line text, **List of values** |
   | Products | `products` | Product, **List of values** |
+  | Videos | `videos` | File (videos only), **List of values** |
 
 - Access: turn **Storefronts** access **on**. The theme can't see the groups without it.
 - If there's an "Active / Draft status" option, entries must be set to **Active**.
@@ -148,6 +149,29 @@ Settings → Custom data → Metaobjects → **Product group** → Add entry. Th
 
 Nothing changes on the live store yet. The live theme doesn't read these fields until the new theme code is live (Step 6).
 
+### 5b. Videos for a specific color/size (optional)
+
+Videos show under the product photos, on desktop and phone. They change when a shopper switches options. If a product has no matching videos, nothing shows.
+
+1. Open the line's Product group entry (e.g. EverBox) → **Videos** → upload or pick the videos.
+2. Set each video's **alt text**: Content → **Files** → click the video → Alt text. The alt text says which products it belongs to.
+
+A video shows on a product when its alt text contains **all** of that product's options. Capitals, commas and slashes don't matter.
+
+| Alt text | Shows on |
+|---|---|
+| `Cozy Medium` | only the Cozy Medium product |
+| `Cabin Cozy Medium` | both Cabin Medium and Cozy Medium |
+| `Cabin Small Medium` | Cabin Small and Cabin Medium |
+| `EverBow Pink` | the Pink EverBow |
+| `Gift Tags Kraft` | Gift Tags |
+| `Snowflake` | the Snowflake charm |
+| `All` | every product in that line |
+
+- `Medium` on its own does **not** show on EverBox products. It also needs the collection (Cabin/Cozy).
+- Videos show in the order they're listed in the Videos field.
+- Only videos uploaded to Shopify work here, not YouTube links.
+
 ---
 
 ## Step 6 — Preview the theme
@@ -174,6 +198,7 @@ The theme code is on git branch `feature/combined-listings-pdp`.
 - [ ] **Accessories:** color circles show. Kraft is crossed out on a bow, and bow colors are crossed out on Gift Tags. Clicking one switches item.
 - [ ] **Charms:** one row of Design buttons.
 - [ ] **Sold out:** a sold-out product's button looks crossed out, and its page shows "Sold out".
+- [ ] **Videos:** give one EverBox video the alt text `Cozy Medium`. It shows under the photos on Cozy Medium only, disappears when you switch to Cabin Medium, and plays with sound when clicked. A product with no matching videos shows no video area.
 - [ ] **Not affected:** bundles and any product not in a group look and work exactly as before.
 
 **Report back** with anything that looks off, plus screenshots.
