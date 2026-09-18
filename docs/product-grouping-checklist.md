@@ -1,12 +1,14 @@
 # EverWrap — Product Grouping Setup Checklist (no app)
 
+Product titles below are the new SEO titles (see `docs/seo-copy-review.md`). Handles never change, so you can also search by handle.
+
 Goal: one product page experience per product line (EverBox, EverEnvelope, EverBag, Accessories, Charms). On any product in a line, shoppers see buttons for every option in that line and can switch between them. Collection pages keep showing each product as its own card.
 
 How it works: the theme reads two new fields on each product (its option values, e.g. **Cabin** / **Small**) plus one "Product group" entry per line that lists the products and the button order. No app, and no product is rebuilt, deleted or redirected.
 
 **Rules for this project**
 - Don't delete, archive, redirect or add variants to any product.
-- Don't edit the 8 bundles.
+- Don't edit the 8 starter sets (Shopify Bundles).
 - Type values exactly as written. Spelling, capitals and spaces must match between the product fields and the group entry.
 - Each product can be in **one** group only.
 - Shopify admin labels may differ slightly from what's written here.
@@ -51,12 +53,12 @@ Settings → Custom data → **Metaobjects** → Add definition
 
   | Product | Old SKU | New SKU |
   |---|---|---|
-  | EverBow: Black | 20COZTRI-BMST-1 | 20COZTRI-BMST-BLK |
-  | EverBow: Navy | 20COZTRI-BMST-1 | 20COZTRI-BMST-NVY |
-  | EverBow: Pink | 20COZTRI-BMST-1 | 20COZTRI-BMST-PNK |
-  | EverBow: Red | 20COZTRI-BMST-1 | 20COZTRI-BMST-RED |
+  | EverBow Reusable Gift Bow – Black | 20COZTRI-BMST-1 | 20COZTRI-BMST-BLK |
+  | EverBow Reusable Gift Bow – Navy | 20COZTRI-BMST-1 | 20COZTRI-BMST-NVY |
+  | EverBow Reusable Gift Bow – Pink | 20COZTRI-BMST-1 | 20COZTRI-BMST-PNK |
+  | EverBow Reusable Gift Bow – Red | 20COZTRI-BMST-1 | 20COZTRI-BMST-RED |
 
-- [ ] On "EverBox: Small Red + White Collapsible Gift Box…" (`everbox-cabin-mini`), change the tag `Cabin Colection` to `Cabin Collection`.
+- [ ] On "EverBox Collapsible Gift Box – Red & White, Small" (`everbox-cabin-mini`), change the tag `Cabin Colection` to `Cabin Collection`.
 
 ---
 
@@ -65,55 +67,55 @@ Settings → Custom data → **Metaobjects** → Add definition
 The fastest way is the bulk editor. Products → select the products → **Bulk edit** → Columns → add **Group option 1** and **Group option 2** → fill in from the tables below → Save.
 
 ### EverBox (Group option 1 = Collection, Group option 2 = Size)
-| Product (title starts with) | Handle | Group option 1 | Group option 2 |
+| Product | Handle | Group option 1 | Group option 2 |
 |---|---|---|---|
-| EverBox: Small Red + White… | everbox-cabin-mini | Cabin | Small |
-| EverBox: Medium Navy Blue… | everbox-cabin-small | Cabin | Medium |
-| EverBox: Large Blue Plaid… | everbox-cabin-medium | Cabin | Large |
-| EverBox: Extra Large Red… | everbox-cabin-large | Cabin | XL |
-| EverBox: Small Black, White and Pink… | copy-of-everbox-cozy-mini | Cozy | Small |
-| EverBox: Medium Pink… | everbox-cozy-small | Cozy | Medium |
-| EverBox: Large Pink Plaid… | everbox-cozy-medium | Cozy | Large |
-| EverBox: Extra Large Yellow… | everbox-large | Cozy | XL |
+| EverBox Collapsible Gift Box – Red & White, Small | everbox-cabin-mini | Cabin | Small |
+| EverBox Collapsible Gift Box – Navy, Medium | everbox-cabin-small | Cabin | Medium |
+| EverBox Collapsible Gift Box – Blue Plaid, Large | everbox-cabin-medium | Cabin | Large |
+| EverBox Collapsible Gift Box – Red, XL | everbox-cabin-large | Cabin | XL |
+| EverBox Collapsible Gift Box – Black, White & Pink, Small | copy-of-everbox-cozy-mini | Cozy | Small |
+| EverBox Collapsible Gift Box – Pink, Medium | everbox-cozy-small | Cozy | Medium |
+| EverBox Collapsible Gift Box – Pink Plaid, Large | everbox-cozy-medium | Cozy | Large |
+| EverBox Collapsible Gift Box – Yellow, XL | everbox-large | Cozy | XL |
 
 ### EverEnvelope (Collection, Size)
-| Product (title starts with) | Handle | Group option 1 | Group option 2 |
+| Product | Handle | Group option 1 | Group option 2 |
 |---|---|---|---|
-| EverEnvelope: Small Blue and Red Print… | evergift-cabin-small | Cabin | Small |
-| EverEnvelope: Medium Red and White… | evergift-cabin-medium | Cabin | Medium |
-| EverEnvelope: Large Navy… Forest Animals… | evergift-cabin-large | Cabin | Large |
-| EverEnvelope: Small Black and White… | evergift-cozy-small | Cozy | Small |
-| EverEnvelope: Medium Black, White, & Marigold… | copy-of-evergift-cozy-medium | Cozy | Medium |
-| EverEnvelope: Large Pink… | evergift-cozy-large | Cozy | Large |
+| EverEnvelope Reusable Gift Bag – Blue & Red Print, Small | evergift-cabin-small | Cabin | Small |
+| EverEnvelope Reusable Gift Bag – Red & White, Medium | evergift-cabin-medium | Cabin | Medium |
+| EverEnvelope Reusable Gift Bag – Navy Forest Animals, Large | evergift-cabin-large | Cabin | Large |
+| EverEnvelope Reusable Gift Bag – Black & White, Small | evergift-cozy-small | Cozy | Small |
+| EverEnvelope Reusable Gift Bag – Black, White & Marigold, Medium | copy-of-evergift-cozy-medium | Cozy | Medium |
+| EverEnvelope Reusable Gift Bag – Pink, Large | evergift-cozy-large | Cozy | Large |
 
 ### EverBag (Collection, Size)
-| Product (title starts with) | Handle | Group option 1 | Group option 2 |
+| Product | Handle | Group option 1 | Group option 2 |
 |---|---|---|---|
-| EverBag: Small Leaf Design… *(stays unpublished)* | everbag-cabin-small | Cabin | Small |
-| EverBag: Medium Holiday Red… Knitted Sweater… | everbag-cabin-medium | Cabin | Medium |
-| EverTie: Large Blue Tie Bag… | everbag-large-cotton-blue-tie-bag-with-satin-ribbon-closure | Cabin | Large |
-| EverBag: Small Grey and Gold Floral… | everbag-cozy-small | Cozy | Small |
-| EverBag: Medium Black and White Buffalo Check… | everbag-cozy-medium | Cozy | Medium |
-| EverTie: Large Tie Bag with Black Grid… | everbag-large-cotton-black-grid-tie-bag-with-satin-ribbon-closure | Cozy | Large |
-| EverBag: Small Green Floral Print… | everbag-small-green-floral-print-with-ivory-satin-bow | Green | Small |
-| EverBag: Medium Green Buffalo Plaid… | everbag-medium-green-buffalo-plaid-with-ivory-satin-bow-copy | Green | Medium |
+| EverBag Reusable Gift Bag – Blue Berry Foliage, Small *(stays unpublished)* | everbag-cabin-small | Cabin | Small |
+| EverBag Reusable Gift Bag – Red Knit Sweater, Medium | everbag-cabin-medium | Cabin | Medium |
+| EverTie Tie Gift Bag – Blue, Large | everbag-large-cotton-blue-tie-bag-with-satin-ribbon-closure | Cabin | Large |
+| EverBag Reusable Gift Bag – Grey & Gold Floral, Small | everbag-cozy-small | Cozy | Small |
+| EverBag Reusable Gift Bag – Buffalo Check, Medium | everbag-cozy-medium | Cozy | Medium |
+| EverTie Tie Gift Bag – Black Grid, Large | everbag-large-cotton-black-grid-tie-bag-with-satin-ribbon-closure | Cozy | Large |
+| EverBag Reusable Gift Bag – Green Floral, Small | everbag-small-green-floral-print-with-ivory-satin-bow | Green | Small |
+| EverBag Reusable Gift Bag – Green Buffalo Plaid, Medium | everbag-medium-green-buffalo-plaid-with-ivory-satin-bow-copy | Green | Medium |
 
 ### Accessories (Item, Color)
 | Product | Handle | Group option 1 | Group option 2 |
 |---|---|---|---|
-| EverBow: Black | everbow | EverBow | Black |
-| EverBow: Navy | everbow-navy | EverBow | Navy |
-| EverBow: Pink | everbow-pink | EverBow | Pink |
-| EverBow: Red | everbow-red | EverBow | Red |
-| Gift Tags (10 Pack) | gift-tags | Gift Tags | Kraft |
+| EverBow Reusable Gift Bow – Black | everbow | EverBow | Black |
+| EverBow Reusable Gift Bow – Navy | everbow-navy | EverBow | Navy |
+| EverBow Reusable Gift Bow – Pink | everbow-pink | EverBow | Pink |
+| EverBow Reusable Gift Bow – Red | everbow-red | EverBow | Red |
+| Recycled Paper Gift Tags – 10 Pack | gift-tags | Gift Tags | Kraft |
 
 ### Charms (Design only; leave Group option 2 empty)
 | Product | Handle | Group option 1 |
 |---|---|---|
-| Charm: Wooden tag with gold heart | charms-wooden-tag-with-gold-heart | Gold Heart |
-| Charm: Snowflake | charm-wooden-tag-with-gold-heart-copy | Snowflake |
-| Charm: Star | charm-wooden-snowflake-copy | Star |
-| Charm: Tree | charm-tree | Tree |
+| Wooden Gold Heart Gift Charm | charms-wooden-tag-with-gold-heart | Gold Heart |
+| Wooden Snowflake Gift Charm | charm-wooden-tag-with-gold-heart-copy | Snowflake |
+| Alloy Star Gift Charm | charm-wooden-snowflake-copy | Star |
+| Alloy Tree Gift Charm | charm-tree | Tree |
 
 ---
 
@@ -125,11 +127,11 @@ Open each product → **Category metafields** → **Color**:
 
 | Product | Color |
 |---|---|
-| EverBow: Black | Black |
-| EverBow: Navy | Navy |
-| EverBow: Pink | Pink |
-| EverBow: Red | Red |
-| Gift Tags (10 Pack) | Add a new entry named **Kraft** with a kraft-brown color (e.g. `#C19A6B`) |
+| EverBow Reusable Gift Bow – Black | Black |
+| EverBow Reusable Gift Bow – Navy | Navy |
+| EverBow Reusable Gift Bow – Pink | Pink |
+| EverBow Reusable Gift Bow – Red | Red |
+| Recycled Paper Gift Tags – 10 Pack | Add a new entry named **Kraft** with a kraft-brown color (e.g. `#C19A6B`) |
 
 If a product has more than one color, the swatch uses the **first** one.
 
