@@ -1,0 +1,123 @@
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'section-product-reviews.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+
+{% comment %}
+  Kept in place (not re-rendered) when switching between products in the same group, since the
+  summary and review app blocks show the same content for the whole group. See product-info.js.
+{% endcomment %}
+<div
+  id="ProductReviews"
+  class="product-reviews section-{{ section.id }}-padding"
+  data-product-swap-preserve="reviews-{{ group_handle | default: product.id }}"
+>
+  <div class="page-width">
+    <div class="product-reviews__card color-{{ section.settings.color_scheme }} gradient">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="product-reviews__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.show_summary -%}
+        {% render 'product-group-rating', product: product, style: 'summary' %}
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="product-reviews__apps">
+          {%- for block in section.blocks -%}
+            {% render block %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product reviews",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by gift-givers"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "label": "Show rating summary",
+      "info": "Average rating across every product in the product group, from ratings Judge.me syncs to Shopify.",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Card color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product reviews"
+    }
+  ]
+}
+{% endschema %}

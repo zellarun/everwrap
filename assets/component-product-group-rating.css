@@ -1,0 +1,36 @@
+.product-group-rating .rating-star {
+  --color-rating-star: #f0b932;
+}
+
+.product-group-rating--summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.product-group-rating--summary .rating-star {
+  --letter-spacing: 0.6;
+  --font-size: 3.2;
+}
+
+.product-group-rating__score,
+.product-group-rating__count {
+  margin: 0;
+}
+
+.product-group-rating__count {
+  opacity: 0.8;
+}
+
+.product-group-rating--inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-group-rating--inline:hover .rating-count {
+  text-decoration: underline;
+}

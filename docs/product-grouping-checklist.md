@@ -172,6 +172,17 @@ A video shows on a product when its alt text contains **all** of that product's 
 - Videos show in the order they're listed in the Videos field.
 - Only videos uploaded to Shopify work here, not YouTube links.
 
+### 5c. Reviews (Judge.me)
+
+The product page now has a **"Loved by gift-givers"** reviews section above Related products, plus stars under the product title.
+
+- **Stars and the summary** ("4.9 out of 5 · Based on 132 reviews of EverBox") add up the ratings of **every product in the line**. The numbers come from the ratings Judge.me syncs into Shopify, the same ones behind star ratings on product cards.
+  - [ ] If the stars or summary don't appear, check in Judge.me that rating sync to Shopify is turned on and that the products have reviews.
+- **Carousel:** the section includes the same Judge.me **Featured carousel** as the homepage. It shows reviews you mark as "featured" in Judge.me, from the whole store.
+- **Optional, full review list with "Write a review":** Online Store → Themes → Customize → a product page → **Product reviews** section → Add block → **Judge.me Review Widget**.
+  - ⚠️ This widget shows **one product's** reviews. The reviews section stays in place when shoppers switch options (so the carousel doesn't reload), so the widget would keep showing the first product's reviews. Only add it if Judge.me **Product groups** is set up to share reviews across each line. That's a Judge.me paid-plan feature.
+- **Theme editor settings:** heading text and size, the summary on/off, and the card color. The default is the pink scheme used by Blog Posts.
+
 ---
 
 ## Step 6 — Preview the theme
@@ -199,7 +210,9 @@ The theme code is on git branch `feature/combined-listings-pdp`.
 - [ ] **Charms:** one row of Design buttons.
 - [ ] **Sold out:** a sold-out product's button looks crossed out, and its page shows "Sold out".
 - [ ] **Videos:** give one EverBox video the alt text `Cozy Medium`. It shows under the photos on Cozy Medium only, disappears when you switch to Cabin Medium, and plays with sound when clicked. A product with no matching videos shows no video area.
-- [ ] **Not affected:** bundles and any product not in a group look and work exactly as before.
+- [ ] **Reviews:** stars and a number show under the title, and clicking them scrolls down to the "Loved by gift-givers" section. The summary count equals the total reviews across the whole line.
+- [ ] **Reviews after switching:** switch options a few times. The Judge.me carousel stays visible, and its arrows still work.
+- [ ] **Not affected:** bundles and any product not in a group look and work exactly as before. For a bundle, the stars and summary show that bundle's own rating.
 
 **Report back** with anything that looks off, plus screenshots.
 
@@ -213,6 +226,7 @@ The theme code is on git branch `feature/combined-listings-pdp`.
 ## Also changed on the product page
 - The **Variant picker** block was added, which is where these buttons render.
 - The **Quick order list** section was removed.
+- A **star rating** block was added under the title, and a **Product reviews** section was added above Related products.
 - Related products is unchanged. Siblings may show there.
 
 ## Not included
