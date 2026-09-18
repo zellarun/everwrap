@@ -1,0 +1,216 @@
+{% comment %}
+  Renders option buttons that switch between sibling products in a product group.
+
+  Groups come from "product_group" metaobject entries (fields: option_1_name, option_1_values,
+  option_2_name, option_2_values, products). Each product stores its own values in the
+  custom.group_option_1 and custom.group_option_2 metafields. Options named "Color" or "Colour"
+  render as swatches using each product's shopify.color-pattern metafield.
+
+  Values with no exact match for the current selection are shown crossed out but stay clickable,
+  switching to the closest sibling that has that value.
+
+  Accepts:
+  - product: {Object} product object.
+  - group: {Object} product_group metaobject the product belongs to.
+  - block: {Object} variant picker block.
+  - product_form_id: {String} id of the product form.
+
+  Usage:
+  {% render 'product-group-picker', product: product, group: group, block: block, product_form_id: product_form_id %}
+{% endcomment %}
+{%- liquid
+  assign siblings = group.products.value
+  assign current_1 = product.metafields.custom.group_option_1.value | strip
+  assign current_2 = product.metafields.custom.group_option_2.value | strip
+-%}
+
+{%- capture label_unavailable -%}
+  <span class="visually-hidden label-unavailable">
+    {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
+  </span>
+{%- endcapture -%}
+
+<variant-selects
+  id="variant-selects-{{ section.id }}"
+  data-section="{{ section.id }}"
+  {{ block.shopify_attributes }}
+>
+  {%- for position in (1..2) -%}
+    {%- liquid
+      if position == 1
+        assign option_name = group.option_1_name.value | strip
+        assign option_values = group.option_1_values.value
+        assign current_value = current_1
+        assign current_other = current_2
+      else
+        assign option_name = group.option_2_name.value | strip
+        assign option_values = group.option_2_values.value
+        assign current_value = current_2
+        assign current_other = current_1
+      endif
+
+      if option_values == blank
+        assign joined_values = ''
+        for sibling in siblings
+          if position == 1
+            assign sibling_value = sibling.metafields.custom.group_option_1.value | strip
+          else
+            assign sibling_value = sibling.metafields.custom.group_option_2.value | strip
+          endif
+          if sibling_value != blank
+            assign joined_values = joined_values | append: sibling_value | append: '|~|'
+          endif
+        endfor
+        assign option_values = joined_values | split: '|~|' | uniq
+      endif
+
+      assign option_name_downcase = option_name | downcase
+      assign is_swatch = false
+      if block.settings.swatch_shape != 'none'
+        if option_name_downcase == 'color' or option_name_downcase == 'colour'
+          assign is_swatch = true
+        endif
+      endif
+    -%}
+
+    {%- if option_name != blank -%}
+      <fieldset class="js product-form__input product-form__input--{% if is_swatch %}swatch{% else %}pill{% endif %}">
+        <legend class="form__label">
+          {%- if is_swatch -%}
+            {{ option_name | escape }}:
+            <span data-selected-value>
+              {{- current_value | escape -}}
+            </span>
+          {%- else -%}
+            {{ option_name | escape }}
+          {%- endif -%}
+        </legend>
+
+      {%- for raw_value in option_values -%}
+        {%- liquid
+          assign value = raw_value | strip
+          assign exact_match = nil
+          assign first_available = nil
+          assign first_match = nil
+
+          for sibling in siblings
+            if position == 1
+              assign sibling_value = sibling.metafields.custom.group_option_1.value | strip
+              assign sibling_other = sibling.metafields.custom.group_option_2.value | strip
+            else
+              assign sibling_value = sibling.metafields.custom.group_option_2.value | strip
+              assign sibling_other = sibling.metafields.custom.group_option_1.value | strip
+            endif
+
+            if sibling_value != value
+              continue
+            endif
+
+            if first_match == nil
+              assign first_match = sibling
+            endif
+            if first_available == nil and sibling.available
+              assign first_available = sibling
+            endif
+            if exact_match == nil and sibling_other == current_other
+              assign exact_match = sibling
+            endif
+          endfor
+
+          assign is_selected = false
+          if value == current_value
+            assign is_selected = true
+            assign target = product
+          elsif exact_match
+            assign target = exact_match
+          elsif first_available
+            assign target = first_available
+          else
+            assign target = first_match
+          endif
+
+          assign is_available = false
+          if is_selected
+            assign is_available = product.available
+          elsif exact_match and exact_match.available
+            assign is_available = true
+          endif
+
+          assign input_id = section.id | append: '-group-' | append: position | append: '-' | append: forloop.index0
+          assign input_name = option_name | append: '-' | append: position
+        -%}
+
+        {%- capture input_dataset -%}
+          {% if target %}data-product-url="{{ target.url }}"{% else %}disabled{% endif %}
+        {%- endcapture -%}
+
+        {%- if is_swatch -%}
+          {%- liquid
+            assign swatch_value = nil
+            assign swatch_focal_point = nil
+            assign swatch_entry = target.metafields.shopify['color-pattern'].value | first
+            if swatch_entry.image.value
+              assign image_url = swatch_entry.image.value | image_url: width: 50
+              assign swatch_value = 'url(' | append: image_url | append: ')'
+              assign swatch_focal_point = swatch_entry.image.value.presentation.focal_point
+            elsif swatch_entry.color.value
+              assign swatch_value = 'rgb(' | append: swatch_entry.color.value.rgb | append: ')'
+            endif
+          -%}
+          <input
+            type="radio"
+            id="{{ input_id }}"
+            name="{{ input_name | escape }}"
+            value="{{ value | escape }}"
+            form="{{ product_form_id }}"
+            class="swatch-input__input{% unless is_available %} visually-disabled{% endunless %}"
+            {% if is_selected %}
+              checked
+            {% endif %}
+            {{ input_dataset }}
+          >
+          <label
+            for="{{ input_id }}"
+            title="{{ value | escape }}"
+            class="swatch-input__label{% if block.settings.swatch_shape == 'square' %} swatch-input__label--square{% endif %}"
+          >
+            <span
+              {% if swatch_value %}
+                class="swatch{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+                style="--swatch--background: {{ swatch_value }};{% if swatch_focal_point %} --swatch-focal-point: {{ swatch_focal_point }};{% endif %}"
+              {% else %}
+                class="swatch swatch--unavailable{% if block.settings.swatch_shape == 'square' %} swatch--square{% endif %}"
+              {% endif %}
+            ></span>
+            <span class="visually-hidden">{{ value | escape }}</span>
+            {{ label_unavailable }}
+          </label>
+        {%- else -%}
+          <input
+            type="radio"
+            id="{{ input_id }}"
+            name="{{ input_name | escape }}"
+            value="{{ value | escape }}"
+            form="{{ product_form_id }}"
+            {% if is_selected %}
+              checked
+            {% endif %}
+            {% unless is_available %}
+              class="disabled"
+            {% endunless %}
+            {{ input_dataset }}
+          >
+          <label for="{{ input_id }}">
+            {{ value | escape -}}
+            {{ label_unavailable }}
+          </label>
+        {%- endif -%}
+      {%- endfor -%}
+      </fieldset>
+    {%- endif -%}
+  {%- endfor -%}
+
+  <script type="application/json" data-selected-variant>
+    {{ product.selected_or_first_available_variant | json }}
+  </script>
+</variant-selects>
