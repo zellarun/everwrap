@@ -65,7 +65,12 @@ Settings → Custom data → **Metaobjects** → Add definition
 
 ## Step 3 — Pattern and size on each product
 
-The fastest way is the bulk editor. Products → select the products → **Bulk edit** → Columns → add **Group option 1** and **Group option 2** → fill in from the tables below → Save.
+**Fastest: import `docs/product-group-import.csv`.** It fills Group option 1 and 2 for all 31 products below. **Do Step 1 first**, because Shopify ignores values for fields that don't exist yet.
+Products → Import → choose the file → tick **Overwrite products with matching handles** → Upload and preview (31 products, all updates, none new) → Import products.
+
+It only changes these two fields. The title and option columns hold the current values because Shopify's importer requires them.
+
+The tables below show what the file contains. You can also type the values in the bulk editor instead.
 
 ### EverBox
 | Product | Handle | Group option 1 (pattern) | Group option 2 (size) |
