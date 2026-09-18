@@ -1,0 +1,92 @@
+{% comment %}
+  Renders videos from the product's group (the "videos" field on its product_group metaobject).
+  A video shows when its alt text contains all of this product's group option values
+  (e.g. "Cozy Medium"), or the word "All". Renders nothing when no videos match.
+
+  Accepts:
+  - product: {Object} product object.
+
+  Usage:
+  {% render 'product-group-videos', product: product %}
+{% endcomment %}
+{%- liquid
+  assign product_group = nil
+  if product.has_only_default_variant
+    for group_entry in shop.metaobjects.product_group.values
+      for group_product in group_entry.products.value
+        if group_product.id == product.id
+          assign product_group = group_entry
+          break
+        endif
+      endfor
+      if product_group
+        break
+      endif
+    endfor
+  endif
+-%}
+
+{%- if product_group and product_group.videos.value != blank -%}
+  {%- liquid
+    assign option_1 = product.metafields.custom.group_option_1.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip
+    assign option_2 = product.metafields.custom.group_option_2.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip
+    assign padded_option_1 = ' ' | append: option_1 | append: ' '
+    assign padded_option_2 = ' ' | append: option_2 | append: ' '
+  -%}
+
+  {%- capture video_items -%}
+    {%- for video in product_group.videos.value -%}
+      {%- liquid
+        if video.media_type != 'video'
+          continue
+        endif
+
+        assign alt = video.alt | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip_newlines
+        assign padded_alt = ' ' | append: alt | append: ' '
+
+        assign is_match = false
+        if padded_alt contains ' all '
+          assign is_match = true
+        elsif option_1 != blank or option_2 != blank
+          assign is_match = true
+          if option_1 != blank
+            unless padded_alt contains padded_option_1
+              assign is_match = false
+            endunless
+          endif
+          if option_2 != blank
+            unless padded_alt contains padded_option_2
+              assign is_match = false
+            endunless
+          endif
+        endif
+
+        unless is_match
+          continue
+        endunless
+      -%}
+      <li
+        class="product-group-videos__item{% if video.aspect_ratio < 1 %} product-group-videos__item--vertical{% endif %}"
+        style="--ratio: {{ video.aspect_ratio | default: 1.7778 }};"
+      >
+        <div class="product-group-videos__media">
+          {{
+            video
+            | video_tag:
+              controls: true,
+              playsinline: true,
+              preload: 'metadata',
+              image_size: '1100x'
+          }}
+        </div>
+      </li>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if video_items != blank -%}
+    {{ 'component-product-group-videos.css' | asset_url | stylesheet_tag }}
+    <ul class="product-group-videos" role="list">
+      {{ video_items }}
+    </ul>
+  {%- endif -%}
+{%- endif -%}
