@@ -1,0 +1,290 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .video-gallery__list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Each video's width is proportional to its aspect ratio so every video in the row is the same height. */
+  @media screen and (min-width: 750px) {
+    .video-gallery__list {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .video-gallery__item {
+      flex: var(--ratio) 1 0;
+      min-width: 0;
+    }
+  }
+
+  .video-gallery__item--vertical {
+    width: 100%;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .video-gallery__item--vertical {
+      max-width: none;
+    }
+  }
+
+  .video-gallery__media {
+    position: relative;
+    aspect-ratio: var(--ratio);
+    overflow: hidden;
+    border-radius: var(--media-radius);
+    background: rgba(var(--color-foreground), 0.05);
+  }
+
+  .video-gallery__media iframe,
+  .video-gallery__media video,
+  .video-gallery__media .placeholder-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .video-gallery__caption {
+    margin: 1.2rem 0 0;
+    text-align: center;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="video-gallery page-width section-{{ section.id }}-padding">
+    {%- unless section.settings.heading == blank -%}
+      <div class="title-wrapper title-wrapper--no-top-margin center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endunless -%}
+
+    <ul class="video-gallery__list" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign has_video = false
+          if block.settings.video != null or block.settings.youtube_url != null
+            assign has_video = true
+          endif
+          if has_video == false and request.design_mode == false
+            continue
+          endif
+
+          if block.settings.orientation == 'vertical'
+            assign ratio = 0.5625
+          else
+            assign ratio = 1.7778
+          endif
+
+          assign start_seconds = 0
+          assign parts = block.settings.start_time | split: ':'
+          for part in parts
+            assign start_seconds = start_seconds | times: 60 | plus: part
+          endfor
+
+          assign end_seconds = 0
+          assign parts = block.settings.end_time | split: ':'
+          for part in parts
+            assign end_seconds = end_seconds | times: 60 | plus: part
+          endfor
+        -%}
+        <li
+          class="video-gallery__item{% if block.settings.orientation == 'vertical' %} video-gallery__item--vertical{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          style="--ratio: {{ ratio }};"
+          {{ block.shopify_attributes }}
+        >
+          <div class="video-gallery__media">
+            {%- if block.settings.video != null -%}
+              {{
+                block.settings.video
+                | video_tag:
+                  controls: true,
+                  playsinline: true,
+                  preload: 'metadata',
+                  image_size: '1100x'
+              }}
+            {%- elsif block.settings.youtube_url != null -%}
+              {%- capture embed_params -%}
+                rel=0&playsinline=1{% if start_seconds > 0 %}&start={{ start_seconds }}{% endif %}{% if end_seconds > start_seconds %}&end={{ end_seconds }}{% endif %}
+              {%- endcapture -%}
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/{{ block.settings.youtube_url.id }}?{{ embed_params | strip }}"
+                title="{{ block.settings.caption | default: section.settings.heading | strip_html | escape }}"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            {%- else -%}
+              {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          {%- if block.settings.caption != blank -%}
+            <p class="video-gallery__caption">{{ block.settings.caption | escape }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video gallery",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See EverWrap in Action"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Uploaded video",
+          "info": "Use this or a YouTube link"
+        },
+        {
+          "type": "video_url",
+          "id": "youtube_url",
+          "accept": ["youtube"],
+          "label": "YouTube link"
+        },
+        {
+          "type": "text",
+          "id": "start_time",
+          "label": "YouTube start time",
+          "info": "Minutes:seconds, e.g. 1:35. Leave blank to start at the beginning.",
+          "placeholder": "0:00"
+        },
+        {
+          "type": "text",
+          "id": "end_time",
+          "label": "YouTube end time",
+          "info": "Minutes:seconds, e.g. 3:56. Leave blank to play to the end.",
+          "placeholder": "0:00"
+        },
+        {
+          "type": "select",
+          "id": "orientation",
+          "label": "Video shape",
+          "options": [
+            {
+              "value": "landscape",
+              "label": "Landscape (16:9)"
+            },
+            {
+              "value": "vertical",
+              "label": "Vertical (9:16)"
+            }
+          ],
+          "default": "landscape"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video gallery",
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
