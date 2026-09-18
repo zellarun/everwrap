@@ -8,20 +8,11 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+{%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
 {%- liquid
   assign product_group = nil
-  if product.has_only_default_variant
-    for group_entry in shop.metaobjects.product_group.values
-      for group_product in group_entry.products.value
-        if group_product.id == product.id
-          assign product_group = group_entry
-          break
-        endif
-      endfor
-      if product_group
-        break
-      endif
-    endfor
+  if group_handle != blank
+    assign product_group = shop.metaobjects.product_group[group_handle]
   endif
 -%}
 {%- if product_group -%}

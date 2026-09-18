@@ -96,12 +96,11 @@ if (!customElements.get('product-info')) {
           if (updateFullPage) {
             document.querySelector('head title').innerHTML = html.querySelector('head title').innerHTML;
 
-            HTMLUpdateUtility.viewTransition(
-              document.querySelector('main'),
-              html.querySelector('main'),
-              this.preProcessHtmlCallbacks,
-              this.postProcessHtmlCallbacks
-            );
+            const main = document.querySelector('main');
+            HTMLUpdateUtility.viewTransition(main, html.querySelector('main'), this.preProcessHtmlCallbacks, [
+              ...this.postProcessHtmlCallbacks,
+              this.keepPreservedNodes(main),
+            ]);
           } else {
             HTMLUpdateUtility.viewTransition(
               this,
@@ -110,6 +109,28 @@ if (!customElements.get('product-info')) {
               this.postProcessHtmlCallbacks
             );
           }
+        };
+      }
+
+      // Moves elements marked [data-product-swap-preserve] from the old page into the new one when the
+      // new page has an element with the same key, so app content (e.g. reviews) isn't re-rendered.
+      keepPreservedNodes(oldRoot) {
+        const preserved = Array.from(oldRoot.querySelectorAll('[data-product-swap-preserve]')).map((node) => ({
+          node,
+          // viewTransition renames ids in the old page to avoid duplicates; remember the originals.
+          ids: [node, ...node.querySelectorAll('[id]')].filter(({ id }) => id).map((element) => [element, element.id]),
+        }));
+
+        return (newRoot) => {
+          preserved.forEach(({ node, ids }) => {
+            const replacement = newRoot.querySelector(
+              `[data-product-swap-preserve="${CSS.escape(node.dataset.productSwapPreserve)}"]`
+            );
+            if (!replacement) return;
+
+            ids.forEach(([element, id]) => (element.id = id));
+            replacement.replaceWith(node);
+          });
         };
       }
 

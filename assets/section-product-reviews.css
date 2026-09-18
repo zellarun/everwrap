@@ -1,0 +1,28 @@
+.product-reviews__card {
+  padding: 4rem 2rem;
+  border-radius: 2.4rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 750px) {
+  .product-reviews__card {
+    padding: 5.6rem 4rem;
+  }
+}
+
+.product-reviews__heading {
+  margin: 0 0 2.4rem;
+}
+
+.product-reviews__apps {
+  margin-top: 3.2rem;
+  padding-top: 3.2rem;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  text-align: initial;
+}
+
+.product-reviews__card > .product-reviews__apps:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}

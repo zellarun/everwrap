@@ -1,0 +1,28 @@
+{% comment %}
+  Outputs the handle of the first product_group metaobject that lists this product, or nothing.
+  Only single-variant products can belong to a group.
+
+  Accepts:
+  - product: {Object} product object.
+
+  Usage:
+  {%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+  {%- assign product_group = shop.metaobjects.product_group[group_handle] -%}
+{% endcomment %}
+{%- liquid
+  assign found_handle = ''
+  if product.has_only_default_variant
+    for group_entry in shop.metaobjects.product_group.values
+      for group_product in group_entry.products.value
+        if group_product.id == product.id
+          assign found_handle = group_entry.system.handle
+          break
+        endif
+      endfor
+      if found_handle != ''
+        break
+      endif
+    endfor
+  endif
+  echo found_handle
+-%}

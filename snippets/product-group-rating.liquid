@@ -1,0 +1,94 @@
+{% comment %}
+  Renders a star rating averaged across every product in the product's group, using the
+  reviews.rating and reviews.rating_count metafields that review apps (Judge.me) sync.
+  Products outside a group use their own rating. Renders nothing when there are no ratings.
+
+  Accepts:
+  - product: {Object} product object.
+  - style: {String} 'inline' (small stars linking to #ProductReviews) or 'summary' (large).
+
+  Usage:
+  {% render 'product-group-rating', product: product, style: 'inline' %}
+{% endcomment %}
+{%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+{%- liquid
+  assign product_group = nil
+  if group_handle != blank
+    assign product_group = shop.metaobjects.product_group[group_handle]
+  endif
+
+  assign rating_total = 0.0
+  assign rating_count = 0
+  assign rating_max = 5
+
+  if product_group
+    for rated_product in product_group.products.value
+      assign rating = rated_product.metafields.reviews.rating.value
+      assign count = rated_product.metafields.reviews.rating_count.value | default: 0
+      if rating != blank and count > 0
+        assign rating_total = rating.rating | times: count | plus: rating_total
+        assign rating_count = rating_count | plus: count
+        assign rating_max = rating.scale_max
+      endif
+    endfor
+  else
+    assign rating = product.metafields.reviews.rating.value
+    assign count = product.metafields.reviews.rating_count.value | default: 0
+    if rating != blank and count > 0
+      assign rating_total = rating.rating | times: count
+      assign rating_count = count
+      assign rating_max = rating.scale_max
+    endif
+  endif
+-%}
+
+{%- if rating_count > 0 -%}
+  {{ 'component-product-group-rating.css' | asset_url | stylesheet_tag }}
+  {%- liquid
+    assign rating_value = rating_total | divided_by: rating_count | round: 1
+    assign rating_decimal = 0
+    assign decimal = rating_value | modulo: 1
+    if decimal >= 0.3 and decimal <= 0.7
+      assign rating_decimal = 0.5
+    elsif decimal > 0.7
+      assign rating_decimal = 1
+    endif
+  -%}
+
+  {%- capture stars -%}
+    <div
+      class="rating"
+      role="img"
+      aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: rating_value, rating_max: rating_max }}"
+    >
+      <span
+        aria-hidden="true"
+        class="rating-star"
+        style="--rating: {{ rating_value | floor }}; --rating-max: {{ rating_max }}; --rating-decimal: {{ rating_decimal }};"
+      ></span>
+    </div>
+  {%- endcapture -%}
+
+  {%- if style == 'summary' -%}
+    <div class="product-group-rating product-group-rating--summary">
+      {{ stars }}
+      <p class="product-group-rating__score h3">{{ rating_value }} out of {{ rating_max }}</p>
+      <p class="product-group-rating__count">
+        Based on {{ rating_count }}
+        {% if rating_count == 1 %}review{% else %}reviews{% endif -%}
+        {%- if product_group %} of {{ product_group.name.value | escape }}{% endif %}
+      </p>
+    </div>
+  {%- else -%}
+    <a href="#ProductReviews" class="rating-wrapper product-group-rating product-group-rating--inline">
+      {{ stars }}
+      <p class="rating-count caption">
+        <span aria-hidden="true">{{ rating_value }} ({{ rating_count }})</span>
+        <span class="visually-hidden">
+          {{- rating_count }}
+          {{ 'accessibility.total_reviews' | t -}}
+        </span>
+      </p>
+    </a>
+  {%- endif -%}
+{%- endif -%}
