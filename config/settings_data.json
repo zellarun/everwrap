@@ -151,7 +151,7 @@
       },
       "8967645882218865749": {
         "type": "shopify://apps/fulbix-variant-images/blocks/app-embed/019c4890-c9be-73e5-b09c-7bbf8e298c57",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       }
     },
