@@ -15,6 +15,23 @@
     assign product_group = shop.metaobjects.product_group[group_handle]
   endif
 -%}
+{%- if request.design_mode and product_group == nil and product.has_only_default_variant -%}
+  {%- liquid
+    assign group_count = shop.metaobjects.product_group.values.size
+    if group_count == 0
+      assign notice = 'No Product group entries are visible to the theme. Check that the metaobject type is exactly "product_group", its Storefronts access is on, and the entries are Active.'
+    else
+      assign notice = 'This product isn’t in the Products list of any Product group (' | append: group_count | append: ' group entries found). Products that shouldn’t be grouped can ignore this.'
+    endif
+  -%}
+  {{ 'component-product-group-picker.css' | asset_url | stylesheet_tag }}
+  <div class="product-group-picker__notice">
+    <strong>Product group setup (only visible in the theme editor):</strong>
+    <ul>
+      <li>{{ notice | escape }}</li>
+    </ul>
+  </div>
+{%- endif -%}
 {%- if product_group -%}
   {% render 'product-group-picker',
     product: product,
