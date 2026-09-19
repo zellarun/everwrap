@@ -9,700 +9,166 @@
  */
 {
   "sections": {
-    "slideshow_hero": {
-      "type": "slideshow",
+    "everwrap_hero": {
+      "type": "everwrap-hero",
       "blocks": {
-        "slide_better_way": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_5085.jpg",
-            "image_overlay_opacity": 40,
-            "heading": "<strong>EASIER </strong>No tape. No scissors. No mess.                     <strong>BEAUTIFUL </strong>Gifts that feels special. <strong>REUSABLE </strong>One wrap. No trash.",
-            "heading_size": "h2",
-            "subheading": "<strong>THE BETTER WAY TO WRAP</strong>",
-            "button_label": "Shop all",
-            "link": "shopify://collections/shop-all",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "left",
-            "color_scheme": "scheme-5"
-          }
-        },
-        "slide_store_flat": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/File_041.jpg",
-            "image_overlay_opacity": 40,
-            "heading": "Gift It. Reuse It. Store It Flat.",
-            "heading_size": "h1",
-            "subheading": "<strong>Everwrap: The gift wrap you don't throw away</strong>",
-            "button_label": "Shop all",
-            "link": "shopify://collections/shop-all",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-5"
-          }
-        },
-        "slide_mission": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/livingroomcozy_24ea13fe-932e-4641-b7bb-c3d41550e056.jpg",
-            "image_overlay_opacity": 30,
-            "heading": "<strong>Less time wrapping. More time celebrating.</strong>",
-            "heading_size": "h2",
-            "subheading": "",
-            "button_label": "Shop all",
-            "link": "shopify://collections/shop-all",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-5"
-          }
-        }
+        "benefit_easy": { "type": "benefit", "settings": { "heading": "Effortless", "text": "No tape. No scissors. No mess." } },
+        "benefit_beautiful": { "type": "benefit", "settings": { "heading": "Beautiful", "text": "A polished gift in seconds." } },
+        "benefit_reusable": { "type": "benefit", "settings": { "heading": "Reusable", "text": "Designed to be gifted again and again." } }
       },
-      "block_order": [
-        "slide_better_way",
-        "slide_store_flat",
-        "slide_mission"
-      ],
+      "block_order": ["benefit_easy", "benefit_beautiful", "benefit_reusable"],
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "small",
-        "slider_visual": "dots",
-        "auto_rotate": true,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": false,
-        "accessibility_info": "Slideshow about EverWrap"
-      }
-    },
-    "newsletter_popup": {
-      "type": "newsletter-popup",
-      "settings": {
-        "enable": true,
-        "delay": 5,
-        "days_until_show_again": 7,
-        "heading": "Join the Wrap Revolution!",
-        "text": "<p>Sign up for early access to new releases, exclusive offers, and gifting inspiration.</p>",
-        "success_message": "Thanks for joining! Watch your inbox.",
-        "color_scheme": "scheme-1"
-      }
-    },
-    "rich_text_QqMr9F": {
-      "type": "rich-text",
-      "blocks": {
-        "button_hDb8yC": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Bundles",
-            "button_link": "shopify://collections/bulk",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "button_hDb8yC"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 12,
-        "padding_bottom": 8
-      }
-    },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "text": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p><strong>✨Same sparkle, new hands at the ribbon ✨</strong><br/>EverWrap is now under new ownership, and we’re honored to carry on the tradition of beautiful, sustainable gifting.</p><p></p><p><strong>Hello and welcome to EverWrap!</strong><br/>We’re so glad you’re here. At EverWrap, we believe gifting should be beautiful, easy, and kind to the planet. That’s why we created reusable gift bags, boxes, and envelopes designed to last—so you can wrap once and gift forever. Whether you're new to reusable wrapping or adding to your collection, we’re here to help you celebrate sustainably.</p><p></p><p>- Jordan & Amy<br/></p>"
-          }
-        }
-      },
-      "block_order": [
-        "text"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 4,
-        "padding_bottom": 4
+        "image": "shopify://shop_images/IMG_5085.jpg",
+        "overlay_opacity": 30,
+        "eyebrow": "Reusable gift wrap, reimagined",
+        "heading": "Wrap once. <em>Gift forever.</em>",
+        "text": "<p>Beautiful, reusable gift wrap that makes every gift feel considered—without the tape, scissors, or waste.</p>",
+        "primary_label": "Shop all wraps",
+        "primary_link": "shopify://collections/shop-all",
+        "secondary_label": "Shop starter sets",
+        "secondary_link": "shopify://collections/bulk",
+        "color_scheme": "scheme-5"
       }
     },
     "collection_list": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection1": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "shop-all"
-          }
-        },
-        "featured_collection_PRhYwy": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "reusable-gift-boxes"
-          }
-        },
-        "featured_collection2": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "reusable-gift-bags"
-          }
-        },
-        "featured_collection_Nyy7LK": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "everenvelopes"
-          }
-        },
-        "featured_collection3": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "bows-and-charms"
-          }
-        }
+        "collection_bags": { "type": "featured_collection", "settings": { "collection": "reusable-gift-bags" } },
+        "collection_boxes": { "type": "featured_collection", "settings": { "collection": "reusable-gift-boxes" } },
+        "collection_envelopes": { "type": "featured_collection", "settings": { "collection": "everenvelopes" } },
+        "collection_details": { "type": "featured_collection", "settings": { "collection": "bows-and-charms" } }
       },
-      "block_order": [
-        "featured_collection1",
-        "featured_collection_PRhYwy",
-        "featured_collection2",
-        "featured_collection_Nyy7LK",
-        "featured_collection3"
-      ],
+      "block_order": ["collection_bags", "collection_boxes", "collection_envelopes", "collection_details"],
       "settings": {
-        "title": "Shop by Wrap Type",
-        "heading_size": "h2",
-        "image_ratio": "square",
-        "columns_desktop": 5,
-        "color_scheme": "scheme-4",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 48,
-        "padding_bottom": 60
-      }
-    },
-    "video_gallery": {
-      "type": "video-gallery",
-      "blocks": {
-        "video_youtube_1": {
-          "type": "video",
-          "settings": {
-            "youtube_url": "https://www.youtube.com/watch?v=elE2LgM9w38",
-            "start_time": "1:35",
-            "end_time": "3:56",
-            "orientation": "landscape",
-            "caption": ""
-          }
-        },
-        "video_frame3": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/Frame 3.mov",
-            "youtube_url": "",
-            "start_time": "",
-            "end_time": "",
-            "orientation": "vertical",
-            "caption": ""
-          }
-        },
-        "video_youtube_2": {
-          "type": "video",
-          "settings": {
-            "youtube_url": "https://www.youtube.com/watch?v=H-VTrb3yVh4",
-            "start_time": "5:20",
-            "end_time": "13:41",
-            "orientation": "landscape",
-            "caption": ""
-          }
-        }
-      },
-      "block_order": [
-        "video_youtube_1",
-        "video_frame3",
-        "video_youtube_2"
-      ],
-      "settings": {
-        "heading": "See EverWrap in Action",
+        "title": "Find your perfect wrap",
         "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "show_view_all": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
-    "1749762297f202f565": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_featured_carousel_yLE3Ny": {
-          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "maxwidth": 1080
-          }
-        },
-        "judge_me_reviews_ugc_media_grid_9cw8wp": {
-          "type": "shopify://apps/judge-me-reviews/blocks/ugc_media_grid/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_featured_carousel_yLE3Ny",
-        "judge_me_reviews_ugc_media_grid_9cw8wp"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "featured_collection_JnhbiM": {
+    "starter_sets": {
       "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "bulk",
         "products_to_show": 4,
-        "title": "New to EverWrap?",
-        "heading_size": "h2",
-        "description": "<p><strong>Start with a Starter Set.</strong></p><p>Everything you need to be ready for birthdays, holidays, last-minute invitations, and everyday gifting.</p>",
-        "show_description": false,
+        "title": "The easiest place to start",
+        "heading_size": "h1",
+        "description": "<p>Everything you need for birthdays, holidays, last-minute invitations, and everyday gifting.</p>",
+        "show_description": true,
         "description_style": "body",
         "columns_desktop": 4,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
+        "view_all_style": "link",
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
+        "show_rating": true,
+        "quick_add": "standard",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 64,
+        "padding_bottom": 88
       }
     },
-    "image_banner_CQPAiw": {
-      "type": "image-banner",
+    "brand_story": {
+      "type": "image-with-text",
       "blocks": {
-        "heading_H8UiP4": {
-          "type": "heading",
-          "settings": {
-            "heading": "Our Mission: Make beautiful gifting easier, more meaningful and less wasteful.",
-            "heading_size": "h0"
-          }
-        },
-        "buttons_F4ppTi": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/shop-all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
+        "caption": { "type": "caption", "settings": { "caption": "A better gifting ritual", "text_style": "caption-with-letter-spacing", "text_size": "medium" } },
+        "heading": { "type": "heading", "settings": { "heading": "Less time wrapping. More time celebrating.", "heading_size": "h1" } },
+        "text": { "type": "text", "settings": { "text": "<p>EverWrap turns wrapping into the easiest part of gifting. Each bag, box, and envelope is thoughtfully designed to look beautiful, store flat, and travel from celebration to celebration.</p><p>One small switch keeps single-use gift wrap out of the trash—and starts a tradition worth passing on.</p>", "text_style": "body" } },
+        "button": { "type": "button", "settings": { "button_label": "Discover our story", "button_link": "shopify://pages/about-us", "button_style_secondary": true } }
       },
-      "block_order": [
-        "heading_H8UiP4",
-        "buttons_F4ppTi"
-      ],
-      "disabled": true,
+      "block_order": ["caption", "heading", "text", "button"],
       "settings": {
         "image": "shopify://shop_images/livingroomcozy_24ea13fe-932e-4641-b7bb-c3d41550e056.jpg",
-        "image_overlay_opacity": 30,
-        "image_height": "small",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
         "image_behavior": "none",
-        "desktop_content_position": "middle-left",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-5",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 88,
+        "padding_bottom": 88
       }
     },
-    "multicolumn2": {
+    "video_gallery": {
+      "type": "video-gallery",
+      "blocks": {
+        "video_youtube_1": { "type": "video", "settings": { "youtube_url": "https://www.youtube.com/watch?v=elE2LgM9w38", "start_time": "1:35", "end_time": "3:56", "orientation": "landscape", "caption": "See how quickly EverWrap turns a gift into something special." } },
+        "video_frame3": { "type": "video", "settings": { "video": "shopify://files/videos/Frame 3.mov", "youtube_url": "", "start_time": "", "end_time": "", "orientation": "vertical", "caption": "Fold, fasten, and gift—no extra supplies needed." } },
+        "video_youtube_2": { "type": "video", "settings": { "youtube_url": "https://www.youtube.com/watch?v=H-VTrb3yVh4", "start_time": "5:20", "end_time": "13:41", "orientation": "landscape", "caption": "Thoughtful gifting can be simple and sustainable." } }
+      },
+      "block_order": ["video_youtube_1", "video_frame3", "video_youtube_2"],
+      "settings": { "heading": "See EverWrap in action", "heading_size": "h1", "color_scheme": "scheme-1", "padding_top": 88, "padding_bottom": 88 }
+    },
+    "reviews": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews": { "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8", "settings": { "maxwidth": 1160 } }
+      },
+      "block_order": ["judge_me_reviews"],
+      "settings": { "include_margins": true }
+    },
+    "journal": {
       "type": "multicolumn",
       "blocks": {
-        "column11": {
-          "type": "column",
-          "settings": {
-            "title": "Do I ask for it back?",
-            "text": "<p>Ever wondered if you're supposed to ask for your reusable gift wrap back?  Let’s talk gifting etiquette.</p>",
-            "link_label": "Click Here to Read More",
-            "link": "shopify://blogs/trending/do-i-ask-for-it-back"
-          }
-        },
-        "column12": {
-          "type": "column",
-          "settings": {
-            "title": "A Simplified Christmas",
-            "text": "<p>The holiday season is busy enough.  EverWrap can help simplify things and save you time.</p>",
-            "link_label": "Click Here to Read More",
-            "link": "shopify://blogs/trending/customer-chantalle-simplified-christmas-and-birthdays-with-everwrap"
-          }
-        }
+        "article_etiquette": { "type": "column", "settings": { "title": "Do I ask for it back?", "text": "<p>A simple guide to reusable gift-wrap etiquette—and how to make passing it on feel natural.</p>", "link_label": "Read the story", "link": "shopify://blogs/trending/do-i-ask-for-it-back" } },
+        "article_christmas": { "type": "column", "settings": { "title": "A simplified Christmas", "text": "<p>How one customer made holiday gifting calmer, faster, and a little more sustainable.</p>", "link_label": "Read the story", "link": "shopify://blogs/trending/customer-chantalle-simplified-christmas-and-birthdays-with-everwrap" } }
       },
-      "block_order": [
-        "column11",
-        "column12"
-      ],
+      "block_order": ["article_etiquette", "article_christmas"],
       "settings": {
-        "title": "Blog Posts",
-        "heading_size": "h2",
+        "title": "The EverWrap journal",
+        "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 2,
         "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "scheme-3",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 48
+        "padding_top": 88,
+        "padding_bottom": 88
       }
     },
-    "rich_text_4QpwEF": {
+    "closing_statement": {
       "type": "rich-text",
       "blocks": {
-        "heading_b4QDfE": {
-          "type": "heading",
-          "settings": {
-            "heading": "The Wrap Revolution Starts with YOU",
-            "heading_size": "h1"
-          }
-        },
-        "text_BpCjhe": {
-          "type": "text",
-          "settings": {
-            "text": "<p>You don't have to change everything to make a difference.</p><p><strong>Start with one EverWrap.</strong></p><p>Use it for a birthday.<br/>Pass it along at Christmas.<br/>Bring it to the next celebration.<br/>Use it again.</p><p>Every time you reuse it, you keep another piece of single-use gift wrap out of the trash.</p><p><strong>One wrap becomes a tradition.<br/>One small change becomes a movement.</strong></p><p>Join us in making gifting easier, more beautiful, and better for the planet.</p><h3><strong>Welcome to the Wrap Revolution.</strong></h3><p><strong>Wrap Once. Gift Forever.</strong></p>"
-          }
-        }
+        "heading": { "type": "heading", "settings": { "heading": "One wrap becomes a tradition.", "heading_size": "h1" } },
+        "text": { "type": "text", "settings": { "text": "<p>Use it for a birthday. Pass it along at Christmas. Bring it to the next celebration. Every reuse keeps another piece of single-use wrap out of the trash.</p>" } },
+        "button": { "type": "button", "settings": { "button_label": "Start your collection", "button_link": "shopify://collections/shop-all", "button_style_secondary": false, "button_label_2": "", "button_link_2": "", "button_style_secondary_2": false } }
       },
-      "block_order": [
-        "heading_b4QDfE",
-        "text_BpCjhe"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
+      "block_order": ["heading", "text", "button"],
+      "settings": { "desktop_content_position": "center", "content_alignment": "center", "color_scheme": "scheme-3", "full_width": true, "padding_top": 88, "padding_bottom": 88 }
     },
-    "1788379311048df9d6": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_52ac1b7_WJ9zz7": {
-          "type": "ai_gen_block_52ac1b7",
-          "settings": {
-            "video_selector": ".video-section video",
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_52ac1b7_WJ9zz7"
-      ],
-      "settings": {}
-    },
-    "featured_collection1": {
-      "type": "featured-collection",
-      "disabled": true,
+    "newsletter_popup": {
+      "type": "newsletter-popup",
       "settings": {
-        "collection": "new-releases",
-        "products_to_show": 10,
-        "title": "New Releases!",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "bulk",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 52
-      }
-    },
-    "featured_product_LkYhxk": {
-      "type": "featured-product",
-      "blocks": {
-        "text_fKD9fa": {
-          "type": "text",
-          "settings": {
-            "text": "{{ section.settings.product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
-        "title_ACyFW9": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "price_Wn6rkk": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_BVqJwG": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector_GqViUL": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_WYGeDf": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "share_34tmVd": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        }
-      },
-      "block_order": [
-        "text_fKD9fa",
-        "title_ACyFW9",
-        "price_Wn6rkk",
-        "variant_picker_BVqJwG",
-        "quantity_selector_GqViUL",
-        "buy_buttons_WYGeDf",
-        "share_34tmVd"
-      ],
-      "disabled": true,
-      "name": "Featured Collection",
-      "settings": {
-        "product": "monthly-match-august-2025",
-        "color_scheme": "",
-        "secondary_background": false,
-        "media_size": "small",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "image_banner_4gfMG9": {
-      "type": "image-banner",
-      "blocks": {
-        "text_Y8PEYz": {
-          "type": "text",
-          "settings": {
-            "text": "THE BETTER WAY TO WRAP",
-            "text_style": "body"
-          }
-        },
-        "heading_Y7p3pp": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>EASIER </strong>No tape. No scissors. No mess.                     <strong>BEAUTIFUL </strong>Gift presentation that feels special. <strong>REUSABLE </strong>One wrap. Over and over again. No trash.",
-            "heading_size": "h2"
-          }
-        },
-        "buttons_mYRhTt": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/shop-all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "text_Y8PEYz",
-        "heading_Y7p3pp",
-        "buttons_mYRhTt"
-      ],
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/IMG_5085.jpg",
-        "image_overlay_opacity": 40,
-        "image_height": "small",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-left",
-        "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-5",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "left",
-        "show_text_below": false
-      }
-    },
-    "image_banner": {
-      "type": "image-banner",
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/Website_Banner_58428d7c-8336-4d20-ada1-37f3b23d0856.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-2",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "image_banner_78HBH6": {
-      "type": "image-banner",
-      "disabled": true,
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/EverWrap_banner.png",
-        "image_overlay_opacity": 0,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
-    "image_banner_PTP4Vp": {
-      "type": "image-banner",
-      "blocks": {
-        "text_DpV9jb": {
-          "type": "text",
-          "settings": {
-            "text": "Everwrap: The gift wrap you don't throw away",
-            "text_style": "subtitle"
-          }
-        },
-        "heading_bhAJjk": {
-          "type": "heading",
-          "settings": {
-            "heading": "Gift It. Reuse It. Store It Flat.",
-            "heading_size": "h1"
-          }
-        },
-        "buttons_LgCKgR": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/shop-all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "text_DpV9jb",
-        "heading_bhAJjk",
-        "buttons_LgCKgR"
-      ],
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/File_041.jpg",
-        "image_2": "shopify://shop_images/tulipbox_8902cdd1-3640-469c-b7e6-6f2c880dad81.jpg",
-        "image_overlay_opacity": 40,
-        "image_height": "small",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-left",
-        "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-5",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "video_pfR9Uy": {
-      "type": "video",
-      "disabled": true,
-      "custom_css": [],
-      "name": "t:sections.video.presets.name",
-      "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "enable_video_looping": true,
-        "video": "shopify://files/videos/EVERBAG 3.mov",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "description": "",
-        "full_width": true,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "enable": true,
+        "delay": 12,
+        "days_until_show_again": 14,
+        "heading": "A little more joy in your inbox",
+        "text": "<p>Get first access to new wraps, gifting ideas, and occasional offers.</p>",
+        "success_message": "Welcome to the wrap revolution.",
+        "color_scheme": "scheme-1"
       }
     }
   },
-  "order": [
-    "slideshow_hero",
-    "newsletter_popup",
-    "rich_text_QqMr9F",
-    "rich_text",
-    "collection_list",
-    "video_gallery",
-    "1749762297f202f565",
-    "featured_collection_JnhbiM",
-    "image_banner_CQPAiw",
-    "multicolumn2",
-    "rich_text_4QpwEF",
-    "1788379311048df9d6",
-    "featured_collection1",
-    "featured_product_LkYhxk",
-    "image_banner_4gfMG9",
-    "image_banner",
-    "image_banner_78HBH6",
-    "image_banner_PTP4Vp",
-    "video_pfR9Uy"
-  ]
+  "order": ["everwrap_hero", "collection_list", "starter_sets", "brand_story", "video_gallery", "reviews", "journal", "closing_statement", "newsletter_popup"]
 }

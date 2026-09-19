@@ -112,12 +112,10 @@ if (!customElements.get('product-info')) {
         };
       }
 
-      // Moves elements marked [data-product-swap-preserve] from the old page into the new one when the
-      // new page has an element with the same key, so app content (e.g. reviews) isn't re-rendered.
+      // Keep marked app content (such as reviews) intact when a grouped product is swapped.
       keepPreservedNodes(oldRoot) {
         const preserved = Array.from(oldRoot.querySelectorAll('[data-product-swap-preserve]')).map((node) => ({
           node,
-          // viewTransition renames ids in the old page to avoid duplicates; remember the originals.
           ids: [node, ...node.querySelectorAll('[id]')].filter(({ id }) => id).map((element) => [element, element.id]),
         }));
 
