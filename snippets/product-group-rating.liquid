@@ -10,16 +10,24 @@
   Usage:
   {% render 'product-group-rating', product: product, style: 'inline' %}
 {% endcomment %}
-{%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
 {%- liquid
+  # Find the product group entry that lists this product (types product_group, product or products).
   assign product_group = nil
-  if group_ref != blank
-    assign group_ref_parts = group_ref | split: '.'
-    assign group_ref_type = group_ref_parts | first
-    assign group_ref_handle = group_ref_parts | last
-    for group_entry in shop.metaobjects[group_ref_type].values
-      if group_entry.system.handle == group_ref_handle
-        assign product_group = group_entry
+  if product.has_only_default_variant
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      for group_entry in shop.metaobjects[group_type].values
+        for group_product in group_entry.products.value
+          if group_product.id == product.id
+            assign product_group = group_entry
+            break
+          endif
+        endfor
+        if product_group != nil
+          break
+        endif
+      endfor
+      if product_group != nil
         break
       endif
     endfor

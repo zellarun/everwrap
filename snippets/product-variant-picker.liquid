@@ -8,16 +8,24 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
-{%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
 {%- liquid
+  # Find the product group entry that lists this product (types product_group, product or products).
   assign product_group = nil
-  if group_ref != blank
-    assign group_ref_parts = group_ref | split: '.'
-    assign group_ref_type = group_ref_parts | first
-    assign group_ref_handle = group_ref_parts | last
-    for group_entry in shop.metaobjects[group_ref_type].values
-      if group_entry.system.handle == group_ref_handle
-        assign product_group = group_entry
+  if product.has_only_default_variant
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      for group_entry in shop.metaobjects[group_type].values
+        for group_product in group_entry.products.value
+          if group_product.id == product.id
+            assign product_group = group_entry
+            break
+          endif
+        endfor
+        if product_group != nil
+          break
+        endif
+      endfor
+      if product_group != nil
         break
       endif
     endfor
@@ -56,6 +64,7 @@
     <strong>Product group setup (only visible in the theme editor):</strong>
     <ul>
       <li>{{ notice | escape }}</li>
+      {%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
       <li>Matched entry: {{ group_ref | default: 'none' | escape }}</li>
       {%- for line in entry_report -%}
         <li>{{ line | escape }}</li>
