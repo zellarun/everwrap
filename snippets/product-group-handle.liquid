@@ -8,8 +8,7 @@
 
   Usage:
   {%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
-  {%- assign group_ref_parts = group_ref | split: '.' -%}
-  {%- assign product_group = shop.metaobjects[group_ref_parts[0]][group_ref_parts[1]] -%}
+  Then loop shop.metaobjects[<type>].values to find the entry whose system.handle matches.
 {% endcomment %}
 {%- liquid
   assign found_ref = ''
