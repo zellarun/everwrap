@@ -16,20 +16,9 @@
           "type": "title",
           "settings": {}
         },
-        "rating": {
-          "type": "rating",
-          "settings": {}
-        },
         "price": {
           "type": "price",
           "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
         },
         "inventory_low_stock": {
           "type": "inventory",
@@ -88,9 +77,7 @@
       },
       "block_order": [
         "title",
-        "rating",
         "price",
-        "variant_picker",
         "inventory_low_stock",
         "buy_buttons_hPzPfc",
         "description",
@@ -107,7 +94,7 @@
         "media_fit": "cover",
         "gallery_layout": "thumbnail_slider",
         "mobile_thumbnails": "hide",
-        "media_position": "left",
+        "media_position": "right",
         "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
@@ -115,38 +102,49 @@
         "padding_bottom": 36
       }
     },
-    "product_reviews": {
-      "type": "product-reviews",
+    "quick-order-list": {
+      "type": "quick-order-list",
+      "settings": {
+        "variants_per_page": 50,
+        "show_image": true,
+        "show_sku": true,
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 16
+      }
+    },
+    "review_gallery": {
+      "type": "apps",
       "blocks": {
-        "judge_me_reviews_featured_carousel_pdp": {
+        "judge_me_media_gallery": {
+          "type": "shopify://apps/judge-me-reviews/blocks/ugc_media_grid/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "judge_me_reviews": {
           "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "maxwidth": 1080
+            "maxwidth": 1160
           }
         }
       },
       "block_order": [
-        "judge_me_reviews_featured_carousel_pdp"
+        "judge_me_media_gallery",
+        "judge_me_reviews"
       ],
       "settings": {
-        "heading": "Loved by gift-givers",
-        "heading_size": "h2",
-        "show_summary": true,
-        "color_scheme": "scheme-1",
-        "padding_top": 32,
-        "padding_bottom": 12
+        "include_margins": true
       }
     },
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "Other Favorites",
+        "heading": "Other industry favorites",
         "heading_size": "h2",
         "products_to_show": 5,
         "columns_desktop": 5,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
@@ -158,7 +156,8 @@
   },
   "order": [
     "main",
-    "product_reviews",
+    "quick-order-list",
+    "review_gallery",
     "related-products"
   ]
 }
