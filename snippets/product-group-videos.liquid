@@ -1,5 +1,5 @@
 {% comment %}
-  Renders videos from the product's group (the "videos" field on its product_group metaobject).
+  Renders videos from the product's group (the "videos" field on its product group metaobject).
   A video shows when its alt text contains all of this product's group option values
   (e.g. "Cozy Medium"), or the word "All". Renders nothing when no videos match.
 
@@ -9,11 +9,12 @@
   Usage:
   {% render 'product-group-videos', product: product %}
 {% endcomment %}
-{%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+{%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
 {%- liquid
   assign product_group = nil
-  if group_handle != blank
-    assign product_group = shop.metaobjects.product_group[group_handle]
+  if group_ref != blank
+    assign group_ref_parts = group_ref | split: '.'
+    assign product_group = shop.metaobjects[group_ref_parts[0]][group_ref_parts[1]]
   endif
 -%}
 

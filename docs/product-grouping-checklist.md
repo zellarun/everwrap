@@ -29,7 +29,7 @@ Settings → Custom data → **Products** → Add definition. Create both:
 Settings → Custom data → **Metaobjects** → Add definition
 
 - Name: **Product group**
-- Type: **`product_group`** (must be exactly this; the theme looks for it)
+- Type: **`product_group`**. The theme also accepts `product` or `products`, so an existing definition with one of those types works too.
 - Fields (check that each **key** matches):
 
   | Field name | Key | Type |

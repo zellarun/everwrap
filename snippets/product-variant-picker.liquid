@@ -8,21 +8,24 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
-{%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+{%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
 {%- liquid
   assign product_group = nil
-  if group_handle != blank
-    assign product_group = shop.metaobjects.product_group[group_handle]
+  if group_ref != blank
+    assign group_ref_parts = group_ref | split: '.'
+    assign product_group = shop.metaobjects[group_ref_parts[0]][group_ref_parts[1]]
   endif
 -%}
 {%- if request.design_mode and product_group == nil and product.has_only_default_variant -%}
   {%- liquid
-    assign group_definition = shop.metaobjects.product_group
-    assign group_count = group_definition.values | size
-    if group_definition == blank
-      assign notice = 'The theme can’t find a metaobject type called "product_group". In Settings → Custom data → Metaobject definitions, open Product group and check that its Type is exactly product_group and Storefronts access is on.'
-    elsif group_count == 0
-      assign notice = 'The product_group type exists but has no Active entries. Check that the Product group entries are set to Active.'
+    assign group_count = 0
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      assign type_count = shop.metaobjects[group_type].values | size
+      assign group_count = group_count | plus: type_count
+    endfor
+    if group_count == 0
+      assign notice = 'The theme can’t see any product group entries (it looks for the metaobject types product_group, product and products). Check that the definition’s Storefronts access is on and the entries are Active.'
     else
       assign notice = 'This product isn’t in the Products list of any Product group (' | append: group_count | append: ' group entries found). Products that shouldn’t be grouped can ignore this.'
     endif
