@@ -13,7 +13,12 @@
   assign product_group = nil
   if group_ref != blank
     assign group_ref_parts = group_ref | split: '.'
-    assign product_group = shop.metaobjects[group_ref_parts[0]][group_ref_parts[1]]
+    for group_entry in shop.metaobjects[group_ref_parts[0]].values
+      if group_entry.system.handle == group_ref_parts[1]
+        assign product_group = group_entry
+        break
+      endif
+    endfor
   endif
 -%}
 {%- if request.design_mode and product_group == nil and product.has_only_default_variant -%}
@@ -49,6 +54,7 @@
     <strong>Product group setup (only visible in the theme editor):</strong>
     <ul>
       <li>{{ notice | escape }}</li>
+      <li>Matched entry: {{ group_ref | default: 'none' | escape }}</li>
       {%- for line in entry_report -%}
         <li>{{ line | escape }}</li>
       {%- endfor -%}

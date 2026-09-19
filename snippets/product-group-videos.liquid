@@ -14,7 +14,12 @@
   assign product_group = nil
   if group_ref != blank
     assign group_ref_parts = group_ref | split: '.'
-    assign product_group = shop.metaobjects[group_ref_parts[0]][group_ref_parts[1]]
+    for group_entry in shop.metaobjects[group_ref_parts[0]].values
+      if group_entry.system.handle == group_ref_parts[1]
+        assign product_group = group_entry
+        break
+      endif
+    endfor
   endif
 -%}
 
