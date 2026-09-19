@@ -2,7 +2,7 @@
   Renders Amazon-style options that switch between sibling products in a product group:
   option 1 as product-photo swatches (e.g. pattern), option 2 as pills (e.g. size).
 
-  Groups come from "product_group" metaobject entries (fields: option_1_name, option_1_values,
+  Groups come from product group metaobject entries (type product_group, product or products) (fields: option_1_name, option_1_values,
   option_2_name, option_2_values, products). Each product stores its own values in the
   custom.group_option_1 and custom.group_option_2 metafields. The optional option_2_details list
   (e.g. dimensions) is shown under each pill, matched to option_2_values by position.
@@ -13,7 +13,7 @@
 
   Accepts:
   - product: {Object} product object.
-  - group: {Object} product_group metaobject the product belongs to.
+  - group: {Object} product group metaobject the product belongs to.
   - block: {Object} variant picker block.
   - product_form_id: {String} id of the product form.
 

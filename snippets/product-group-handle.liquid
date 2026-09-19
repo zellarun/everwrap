@@ -1,28 +1,36 @@
 {% comment %}
-  Outputs the handle of the first product_group metaobject that lists this product, or nothing.
+  Outputs "<type>.<handle>" for the first product group entry that lists this product, or nothing.
+  The group definition may use the metaobject type product_group, product or products.
   Only single-variant products can belong to a group.
 
   Accepts:
   - product: {Object} product object.
 
   Usage:
-  {%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
-  {%- assign product_group = shop.metaobjects.product_group[group_handle] -%}
+  {%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+  {%- assign group_ref_parts = group_ref | split: '.' -%}
+  {%- assign product_group = shop.metaobjects[group_ref_parts[0]][group_ref_parts[1]] -%}
 {% endcomment %}
 {%- liquid
-  assign found_handle = ''
+  assign found_ref = ''
   if product.has_only_default_variant
-    for group_entry in shop.metaobjects.product_group.values
-      for group_product in group_entry.products.value
-        if group_product.id == product.id
-          assign found_handle = group_entry.system.handle
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      for group_entry in shop.metaobjects[group_type].values
+        for group_product in group_entry.products.value
+          if group_product.id == product.id
+            assign found_ref = group_type | append: '.' | append: group_entry.system.handle
+            break
+          endif
+        endfor
+        if found_ref != ''
           break
         endif
       endfor
-      if found_handle != ''
+      if found_ref != ''
         break
       endif
     endfor
   endif
-  echo found_handle
+  echo found_ref
 -%}

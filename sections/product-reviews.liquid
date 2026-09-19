@@ -15,7 +15,7 @@
   }
 {%- endstyle -%}
 
-{%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+{%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
 
 {% comment %}
   Kept in place (not re-rendered) when switching between products in the same group, since the
@@ -24,7 +24,7 @@
 <div
   id="ProductReviews"
   class="product-reviews section-{{ section.id }}-padding"
-  data-product-swap-preserve="reviews-{{ group_handle | default: product.id }}"
+  data-product-swap-preserve="reviews-{{ group_ref | default: product.id }}"
 >
   <div class="page-width">
     <div class="product-reviews__card color-{{ section.settings.color_scheme }} gradient">

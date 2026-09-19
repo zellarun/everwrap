@@ -10,11 +10,12 @@
   Usage:
   {% render 'product-group-rating', product: product, style: 'inline' %}
 {% endcomment %}
-{%- capture group_handle -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+{%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
 {%- liquid
   assign product_group = nil
-  if group_handle != blank
-    assign product_group = shop.metaobjects.product_group[group_handle]
+  if group_ref != blank
+    assign group_ref_parts = group_ref | split: '.'
+    assign product_group = shop.metaobjects[group_ref_parts[0]][group_ref_parts[1]]
   endif
 
   assign rating_total = 0.0
