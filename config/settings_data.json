@@ -148,11 +148,6 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
-      },
-      "8967645882218865749": {
-        "type": "shopify://apps/fulbix-variant-images/blocks/app-embed/019c4890-c9be-73e5-b09c-7bbf8e298c57",
-        "disabled": false,
-        "settings": {}
       }
     },
     "color_schemes": {
