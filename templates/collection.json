@@ -11,14 +11,22 @@
   "sections": {
     "banner": {
       "type": "main-collection-banner",
+      "custom_css": [],
       "settings": {
-        "show_collection_description": true,
-        "show_collection_image": true,
+        "show_collection_description": false,
+        "show_collection_image": false,
         "color_scheme": "scheme-1"
       }
     },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "custom_css": [
+        ".collection .product-grid .grid__item {display: flex;}",
+        ".collection .product-grid .card-wrapper,.collection .product-grid .card {width: 100%; height: 100%;}",
+        ".collection .product-grid .card > .card__content .card__information {display: flex; flex-direction: column; height: 100%;}",
+        ".collection .product-grid .card > .card__content .card-information {margin-top: auto;}",
+        "/* Hide the duplicate title over the product image */.collection .product-grid .card__inner .card__content {display: none;}"
+      ],
       "settings": {
         "products_per_page": 20,
         "columns_desktop": 5,
