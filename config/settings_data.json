@@ -10,18 +10,18 @@
 {
   "current": {
     "logo": "shopify://shop_images/EverWrapLogoBlack.jpg",
-    "logo_width": 260,
+    "logo_width": 200,
     "favicon": "shopify://shop_images/download.png",
     "type_header_font": "jost_n4",
-    "heading_scale": 105,
+    "heading_scale": 112,
     "type_body_font": "jost_n4",
     "body_scale": 100,
-    "page_width": 1200,
-    "spacing_sections": 0,
-    "spacing_grid_horizontal": 12,
-    "spacing_grid_vertical": 12,
+    "page_width": 1400,
+    "spacing_sections": 24,
+    "spacing_grid_horizontal": 20,
+    "spacing_grid_vertical": 28,
     "animations_reveal_on_scroll": true,
-    "animations_hover_elements": "default",
+    "animations_hover_elements": "vertical-lift",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
     "buttons_radius": 6,
@@ -151,7 +151,7 @@
       },
       "8967645882218865749": {
         "type": "shopify://apps/fulbix-variant-images/blocks/app-embed/019c4890-c9be-73e5-b09c-7bbf8e298c57",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       }
     },
@@ -160,11 +160,11 @@
         "settings": {
           "background": "#ffffff",
           "background_gradient": "",
-          "text": "#3e385f",
-          "button": "#dab8bb",
-          "button_label": "#262626",
-          "secondary_button_label": "#001128",
-          "shadow": "#001128"
+          "text": "#252230",
+          "button": "#3e385f",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#3e385f",
+          "shadow": "#252230"
         }
       },
       "scheme-2": {
@@ -180,7 +180,7 @@
       },
       "scheme-3": {
         "settings": {
-          "background": "#dab8bb",
+          "background": "#f4eaeb",
           "background_gradient": "",
           "text": "#262626",
           "button": "#fdfdfd",
