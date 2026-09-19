@@ -14,10 +14,8 @@
   assign product_group = nil
   if group_ref != blank
     assign group_ref_parts = group_ref | split: '.'
-    assign group_ref_type = group_ref_parts | first
-    assign group_ref_handle = group_ref_parts | last
-    for group_entry in shop.metaobjects[group_ref_type].values
-      if group_entry.system.handle == group_ref_handle
+    for group_entry in shop.metaobjects[group_ref_parts[0]].values
+      if group_entry.system.handle == group_ref_parts[1]
         assign product_group = group_entry
         break
       endif
