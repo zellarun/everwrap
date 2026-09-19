@@ -12,11 +12,33 @@
     "everwrap_hero": {
       "type": "everwrap-hero",
       "blocks": {
-        "benefit_easy": { "type": "benefit", "settings": { "heading": "Effortless", "text": "No tape. No scissors. No mess." } },
-        "benefit_beautiful": { "type": "benefit", "settings": { "heading": "Beautiful", "text": "A polished gift in seconds." } },
-        "benefit_reusable": { "type": "benefit", "settings": { "heading": "Reusable", "text": "Designed to be gifted again and again." } }
+        "benefit_easy": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Effortless",
+            "text": "No tape. No scissors. No mess."
+          }
+        },
+        "benefit_beautiful": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Beautiful",
+            "text": "A polished gift in seconds."
+          }
+        },
+        "benefit_reusable": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Reusable",
+            "text": "Designed to be gifted again and again."
+          }
+        }
       },
-      "block_order": ["benefit_easy", "benefit_beautiful", "benefit_reusable"],
+      "block_order": [
+        "benefit_easy",
+        "benefit_beautiful",
+        "benefit_reusable"
+      ],
       "settings": {
         "image": "shopify://shop_images/IMG_5085.jpg",
         "overlay_opacity": 30,
@@ -33,12 +55,37 @@
     "collection_list": {
       "type": "collection-list",
       "blocks": {
-        "collection_bags": { "type": "featured_collection", "settings": { "collection": "reusable-gift-bags" } },
-        "collection_boxes": { "type": "featured_collection", "settings": { "collection": "reusable-gift-boxes" } },
-        "collection_envelopes": { "type": "featured_collection", "settings": { "collection": "everenvelopes" } },
-        "collection_details": { "type": "featured_collection", "settings": { "collection": "bows-and-charms" } }
+        "collection_bags": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "reusable-gift-bags"
+          }
+        },
+        "collection_boxes": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "reusable-gift-boxes"
+          }
+        },
+        "collection_envelopes": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "everenvelopes"
+          }
+        },
+        "collection_details": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bows-and-charms"
+          }
+        }
       },
-      "block_order": ["collection_bags", "collection_boxes", "collection_envelopes", "collection_details"],
+      "block_order": [
+        "collection_bags",
+        "collection_boxes",
+        "collection_envelopes",
+        "collection_details"
+      ],
       "settings": {
         "title": "Find your perfect wrap",
         "heading_size": "h1",
@@ -60,7 +107,7 @@
         "title": "The easiest place to start",
         "heading_size": "h1",
         "description": "<p>Everything you need for birthdays, holidays, last-minute invitations, and everyday gifting.</p>",
-        "show_description": true,
+        "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
         "enable_desktop_slider": false,
@@ -83,12 +130,43 @@
     "brand_story": {
       "type": "image-with-text",
       "blocks": {
-        "caption": { "type": "caption", "settings": { "caption": "A better gifting ritual", "text_style": "caption-with-letter-spacing", "text_size": "medium" } },
-        "heading": { "type": "heading", "settings": { "heading": "Less time wrapping. More time celebrating.", "heading_size": "h1" } },
-        "text": { "type": "text", "settings": { "text": "<p>EverWrap turns wrapping into the easiest part of gifting. Each bag, box, and envelope is thoughtfully designed to look beautiful, store flat, and travel from celebration to celebration.</p><p>One small switch keeps single-use gift wrap out of the trash—and starts a tradition worth passing on.</p>", "text_style": "body" } },
-        "button": { "type": "button", "settings": { "button_label": "Discover our story", "button_link": "shopify://pages/about-us", "button_style_secondary": true } }
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "A better gifting ritual",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Less time wrapping. More time celebrating.",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>EverWrap turns wrapping into the easiest part of gifting. Each bag, box, and envelope is thoughtfully designed to look beautiful, store flat, and travel from celebration to celebration.</p><p>One small switch keeps single-use gift wrap out of the trash—and starts a tradition worth passing on.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Discover our story",
+            "button_link": "shopify://pages/about",
+            "button_style_secondary": true
+          }
+        }
       },
-      "block_order": ["caption", "heading", "text", "button"],
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
         "image": "shopify://shop_images/livingroomcozy_24ea13fe-932e-4641-b7bb-c3d41550e056.jpg",
         "height": "large",
@@ -108,28 +186,94 @@
     "video_gallery": {
       "type": "video-gallery",
       "blocks": {
-        "video_youtube_1": { "type": "video", "settings": { "youtube_url": "https://www.youtube.com/watch?v=elE2LgM9w38", "start_time": "1:35", "end_time": "3:56", "orientation": "landscape", "caption": "See how quickly EverWrap turns a gift into something special." } },
-        "video_frame3": { "type": "video", "settings": { "video": "shopify://files/videos/Frame 3.mov", "youtube_url": "", "start_time": "", "end_time": "", "orientation": "vertical", "caption": "Fold, fasten, and gift—no extra supplies needed." } },
-        "video_youtube_2": { "type": "video", "settings": { "youtube_url": "https://www.youtube.com/watch?v=H-VTrb3yVh4", "start_time": "5:20", "end_time": "13:41", "orientation": "landscape", "caption": "Thoughtful gifting can be simple and sustainable." } }
+        "video_youtube_1": {
+          "type": "video",
+          "settings": {
+            "youtube_url": "https://www.youtube.com/watch?v=elE2LgM9w38",
+            "start_time": "1:35",
+            "end_time": "3:56",
+            "orientation": "landscape",
+            "caption": "See how quickly EverWrap turns a gift into something special."
+          }
+        },
+        "video_frame3": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Frame 3.mov",
+            "youtube_url": "",
+            "start_time": "",
+            "end_time": "",
+            "orientation": "vertical",
+            "caption": "Fold, fasten, and gift—no extra supplies needed."
+          }
+        },
+        "video_youtube_2": {
+          "type": "video",
+          "settings": {
+            "youtube_url": "https://www.youtube.com/watch?v=H-VTrb3yVh4",
+            "start_time": "5:20",
+            "end_time": "13:41",
+            "orientation": "landscape",
+            "caption": "Thoughtful gifting can be simple and sustainable."
+          }
+        }
       },
-      "block_order": ["video_youtube_1", "video_frame3", "video_youtube_2"],
-      "settings": { "heading": "See EverWrap in action", "heading_size": "h1", "color_scheme": "scheme-1", "padding_top": 88, "padding_bottom": 88 }
+      "block_order": [
+        "video_youtube_1",
+        "video_frame3",
+        "video_youtube_2"
+      ],
+      "settings": {
+        "heading": "See EverWrap in action",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
     },
     "reviews": {
       "type": "apps",
       "blocks": {
-        "judge_me_reviews": { "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8", "settings": { "maxwidth": 1160 } }
+        "judge_me_reviews": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1160
+          }
+        }
       },
-      "block_order": ["judge_me_reviews"],
-      "settings": { "include_margins": true }
+      "block_order": [
+        "judge_me_reviews"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     },
     "journal": {
       "type": "multicolumn",
       "blocks": {
-        "article_etiquette": { "type": "column", "settings": { "title": "Do I ask for it back?", "text": "<p>A simple guide to reusable gift-wrap etiquette—and how to make passing it on feel natural.</p>", "link_label": "Read the story", "link": "shopify://blogs/trending/do-i-ask-for-it-back" } },
-        "article_christmas": { "type": "column", "settings": { "title": "A simplified Christmas", "text": "<p>How one customer made holiday gifting calmer, faster, and a little more sustainable.</p>", "link_label": "Read the story", "link": "shopify://blogs/trending/customer-chantalle-simplified-christmas-and-birthdays-with-everwrap" } }
+        "article_etiquette": {
+          "type": "column",
+          "settings": {
+            "title": "Do I ask for it back?",
+            "text": "<p>A simple guide to reusable gift-wrap etiquette—and how to make passing it on feel natural.</p>",
+            "link_label": "Read the story",
+            "link": "shopify://blogs/trending/do-i-ask-for-it-back"
+          }
+        },
+        "article_christmas": {
+          "type": "column",
+          "settings": {
+            "title": "A simplified Christmas",
+            "text": "<p>How one customer made holiday gifting calmer, faster, and a little more sustainable.</p>",
+            "link_label": "Read the story",
+            "link": "shopify://blogs/trending/customer-chantalle-simplified-christmas-and-birthdays-with-everwrap"
+          }
+        }
       },
-      "block_order": ["article_etiquette", "article_christmas"],
+      "block_order": [
+        "article_etiquette",
+        "article_christmas"
+      ],
       "settings": {
         "title": "The EverWrap journal",
         "heading_size": "h1",
@@ -150,12 +294,44 @@
     "closing_statement": {
       "type": "rich-text",
       "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "One wrap becomes a tradition.", "heading_size": "h1" } },
-        "text": { "type": "text", "settings": { "text": "<p>Use it for a birthday. Pass it along at Christmas. Bring it to the next celebration. Every reuse keeps another piece of single-use wrap out of the trash.</p>" } },
-        "button": { "type": "button", "settings": { "button_label": "Start your collection", "button_link": "shopify://collections/shop-all", "button_style_secondary": false, "button_label_2": "", "button_link_2": "", "button_style_secondary_2": false } }
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "One wrap becomes a tradition.",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Use it for a birthday. Pass it along at Christmas. Bring it to the next celebration. Every reuse keeps another piece of single-use wrap out of the trash.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Start your collection",
+            "button_link": "shopify://collections/shop-all",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
       },
-      "block_order": ["heading", "text", "button"],
-      "settings": { "desktop_content_position": "center", "content_alignment": "center", "color_scheme": "scheme-3", "full_width": true, "padding_top": 88, "padding_bottom": 88 }
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
     },
     "newsletter_popup": {
       "type": "newsletter-popup",
@@ -170,5 +346,15 @@
       }
     }
   },
-  "order": ["everwrap_hero", "collection_list", "starter_sets", "brand_story", "video_gallery", "reviews", "journal", "closing_statement", "newsletter_popup"]
+  "order": [
+    "everwrap_hero",
+    "collection_list",
+    "starter_sets",
+    "brand_story",
+    "video_gallery",
+    "reviews",
+    "journal",
+    "closing_statement",
+    "newsletter_popup"
+  ]
 }
