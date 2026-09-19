@@ -28,6 +28,20 @@
       assign notice = 'The theme can’t see any product group entries (it looks for the metaobject types product_group, product and products). Check that the definition’s Storefronts access is on and the entries are Active.'
     else
       assign notice = 'This product isn’t in the Products list of any Product group (' | append: group_count | append: ' group entries found). Products that shouldn’t be grouped can ignore this.'
+      assign entry_report = ''
+      assign listed_total = 0
+      for group_type in group_types
+        for group_entry in shop.metaobjects[group_type].values
+          assign listed = group_entry.products.value | size
+          assign listed_total = listed_total | plus: listed
+          assign entry_label = group_entry.name.value | default: group_entry.system.handle
+          assign entry_report = entry_report | append: entry_label | append: ' (' | append: group_type | append: '): ' | append: listed | append: ' products readable|'
+        endfor
+      endfor
+      if listed_total == 0
+        assign notice = notice | append: ' None of the entries have a readable Products list, so the Products field’s key is probably not exactly "products". Check the field’s key in the metaobject definition.'
+      endif
+      assign entry_report = entry_report | split: '|'
     endif
   -%}
   {{ 'component-product-group-picker.css' | asset_url | stylesheet_tag }}
@@ -35,6 +49,9 @@
     <strong>Product group setup (only visible in the theme editor):</strong>
     <ul>
       <li>{{ notice | escape }}</li>
+      {%- for line in entry_report -%}
+        <li>{{ line | escape }}</li>
+      {%- endfor -%}
     </ul>
   </div>
 {%- endif -%}
