@@ -667,7 +667,6 @@
     },
     "video_pfR9Uy": {
       "type": "video",
-      "disabled": true,
       "custom_css": [],
       "name": "t:sections.video.presets.name",
       "settings": {
