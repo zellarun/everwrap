@@ -155,10 +155,8 @@ a:not(.button) {
 .header__menu-item {
   padding: 1.2rem 1.4rem;
   color: var(--everwrap-ink);
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 
 .header__menu-item span {
