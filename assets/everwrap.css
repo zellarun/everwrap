@@ -153,7 +153,7 @@ a:not(.button) {
 }
 
 .header__menu-item {
-  padding: 1.2rem 1.4rem;
+  padding: 1rem 1.4rem;
   color: var(--everwrap-ink);
   font-size: 1.25rem;
   font-weight: 500;
