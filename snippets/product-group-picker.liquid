@@ -176,13 +176,12 @@
               assign target = first_match
             endif
 
-            # Swatches are only greyed out when sold out; pills also when the selected swatch
-            # doesn't come in that value.
+            # Greyed out when this value doesn't come in the currently selected value of the
+            # other option too (swatches grey out based on the selected size pill, and pills
+            # grey out based on the selected swatch), or when that exact combination is sold out.
             assign is_available = false
             if is_selected
               assign is_available = product.available
-            elsif position == 1 and first_available
-              assign is_available = true
             elsif exact_match and exact_match.available
               assign is_available = true
             endif

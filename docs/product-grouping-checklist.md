@@ -2,7 +2,7 @@
 
 Product titles below are the new SEO titles (see `docs/seo-copy-review.md`). Handles never change, so you can also search by handle.
 
-Goal: one product page experience per product line (EverBox, EverEnvelope, EverBag, Accessories, Charms), Amazon-style. On any product in a line, shoppers see **photo swatches** for every pattern in that line and **size pills with dimensions**. Sizes a pattern doesn't come in are greyed out. Collection pages keep showing each product as its own card.
+Goal: one product page experience per product line (EverBox, EverEnvelope, EverBag, EverTie, Accessories, Charms), Amazon-style. On any product in a line, shoppers see **photo swatches** for every pattern in that line and, where the line has sizes, **size pills with dimensions**. A pattern or size that isn't in stock together is blacked out. Collection pages keep showing each product as its own card.
 
 How it works: the theme reads two new fields on each product (its pattern and size, e.g. **Buffalo Check** / **Medium**) plus one "Product group" entry per line that lists the products and the button order. No app, and no product is rebuilt, deleted or redirected.
 
@@ -103,8 +103,16 @@ The tables below show what the file contains. You can also type the values in th
 | EverBag Reusable Gift Bag – Red Knit Sweater, Medium | everbag-cabin-medium | Red Knit Sweater | Medium |
 | EverBag Reusable Gift Bag – Buffalo Check, Medium | everbag-cozy-medium | Buffalo Check | Medium |
 | EverBag Reusable Gift Bag – Green Buffalo Plaid, Medium | everbag-medium-green-buffalo-plaid-with-ivory-satin-bow-copy | Green Buffalo Plaid | Medium |
-| EverTie Tie Gift Bag – Blue, Large | everbag-large-cotton-blue-tie-bag-with-satin-ribbon-closure | Blue | Large |
-| EverTie Tie Gift Bag – Black Grid, Large | everbag-large-cotton-black-grid-tie-bag-with-satin-ribbon-closure | Black Grid | Large |
+
+EverBag no longer includes a "Large" size — the two EverTie products below moved into their own group, since a bow-tie bag isn't really a "Large" version of the other EverBags.
+
+### EverTie (one row of swatches; leave Group option 2 empty)
+| Product | Handle | Group option 1 |
+|---|---|---|
+| EverTie Tie Gift Bag – Blue, Large | everbag-large-cotton-blue-tie-bag-with-satin-ribbon-closure | Blue |
+| EverTie Tie Gift Bag – Black Grid, Large | everbag-large-cotton-black-grid-tie-bag-with-satin-ribbon-closure | Black Grid |
+
+These two already have Group option 1 set from the CSV import (Blue / Black Grid). Their Group option 2 field can stay as "Large" or be cleared — it's ignored once the EverTie group entry below has no Option 2 name.
 
 ### Accessories (one row of swatches; leave Group option 2 empty)
 | Product | Handle | Group option 1 |
@@ -133,7 +141,7 @@ The Color and Size category fields are still worth filling in for Google Shoppin
 
 ---
 
-## Step 5 — Create the 5 Product group entries
+## Step 5 — Create the 6 Product group entries
 
 Settings → Custom data → Metaobjects → **Product group** → Add entry. Each `·` below is a separate entry in the list. The order sets the order of the swatches and pills.
 
@@ -150,10 +158,15 @@ Settings → Custom data → Metaobjects → **Product group** → Add entry. Ea
 - Products: the 6 EverEnvelope products above
 
 **EverBag**
-- Option 1 name: **Color**. Values: Blue Berry Foliage · Grey & Gold Floral · Green Floral · Red Knit Sweater · Buffalo Check · Green Buffalo Plaid · Blue · Black Grid
-- Option 2 name: **Size**. Values: Small · Medium · Large
-- Option 2 details: 8" x 8" x 4.5" · 11.5" x 9" x 7" · 27" x 19"
-- Products: the 8 EverBag / EverTie products above
+- Option 1 name: **Color**. Values: Blue Berry Foliage · Grey & Gold Floral · Green Floral · Red Knit Sweater · Buffalo Check · Green Buffalo Plaid
+- Option 2 name: **Size**. Values: Small · Medium
+- Option 2 details: 8" x 8" x 4.5" · 11.5" x 9" x 7"
+- Products: the 6 EverBag products above (**not** the 2 EverTie products — if they're still listed here from the earlier setup, remove them)
+
+**EverTie**
+- Option 1 name: **Color**. Values: Blue · Black Grid
+- Option 2 name, values and details: leave empty
+- Products: the 2 EverTie products above
 
 **Accessories**
 - Option 1 name: **Style**. Values: Black Bow · Navy Bow · Pink Bow · Red Bow · Gift Tags
@@ -222,11 +235,13 @@ The theme code is on git branch `feature/combined-listings-pdp`.
 **Specific checks**
 - [ ] **Swatches:** every pattern in the line shows as a photo tile. The current product's tile has a dark border. No titles or prices show in the picker.
 - [ ] **Size pills** show the dimensions under each size (e.g. "Medium · 11.5" x 9" x 7"").
-- [ ] **Greyed out sizes:** on the Buffalo Check EverBag (Medium), Small and Large are greyed out with a dashed border. Clicking Large opens a Large EverTie.
+- [ ] **Blacked-out sizes:** on the Buffalo Check EverBag (Medium), Small is blacked out (dark tile/pill, dashed border) since it isn't Medium.
+- [ ] **Blacked-out patterns:** still on the Buffalo Check EverBag (Medium), any pattern swatch that doesn't come in Medium is also blacked out — not just the size pills.
+- [ ] **EverTie:** EverTie shows as its own picker (Blue / Black Grid swatches only, no size pills), separate from EverBag.
 - [ ] **EverBox:** clicking the Red swatch opens the Red XL box at $19.99, and the XL pill shows 16" x 12" x 12".
-- [ ] **Accessories and Charms:** one row of photo swatches and no size pills.
+- [ ] **Accessories, Charms and EverTie:** one row of photo swatches and no size pills.
 - [ ] **Unpublished products** (if any) don't show as swatches.
-- [ ] **Sold out:** a sold-out pattern's swatch is faded with a dashed border, and its page shows "Sold out".
+- [ ] **Sold out:** a sold-out pattern's swatch is blacked out, and its page shows "Sold out".
 - [ ] **Videos:** give one EverBag video the alt text `Buffalo Check Medium`. It shows under the photos on that bag only, disappears when you switch to another pattern, and plays with sound when clicked. A product with no matching videos shows no video area.
 - [ ] **Reviews:** stars and a number show under the title, and clicking them scrolls down to the "Loved by gift-givers" section. The summary count equals the total reviews across the whole line.
 - [ ] **Reviews after switching:** switch options a few times. The Judge.me carousel stays visible, and its arrows still work.

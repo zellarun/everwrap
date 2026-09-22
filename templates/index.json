@@ -10,13 +10,13 @@
 {
   "sections": {
     "everwrap_hero": {
-      "type": "everwrap-hero",
+      "type": "slideshow",
       "blocks": {
         "slide_better_way": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/IMG_5085.jpg",
-            "image_overlay_opacity": 40,
+            "image_overlay_opacity": 60,
             "heading": "<strong>EASIER </strong>No tape. No scissors. No mess.                     <strong>BEAUTIFUL </strong>Gifts that feels special. <strong>REUSABLE </strong>One wrap. No trash.",
             "heading_size": "h2",
             "subheading": "<strong>THE BETTER WAY TO WRAP</strong>",
@@ -34,7 +34,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/File_041.jpg",
-            "image_overlay_opacity": 40,
+            "image_overlay_opacity": 60,
             "heading": "Gift It. Reuse It. Store It Flat.",
             "heading_size": "h1",
             "subheading": "<strong>Everwrap: The gift wrap you don't throw away</strong>",
@@ -52,7 +52,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/livingroomcozy_24ea13fe-932e-4641-b7bb-c3d41550e056.jpg",
-            "image_overlay_opacity": 30,
+            "image_overlay_opacity": 60,
             "heading": "<strong>Less time wrapping. More time celebrating.</strong>",
             "heading_size": "h2",
             "subheading": "",
@@ -73,16 +73,14 @@
         "slide_mission"
       ],
       "settings": {
-        "image": "shopify://shop_images/IMG_5085.jpg",
-        "overlay_opacity": 30,
-        "eyebrow": "Reusable gift wrap, reimagined",
-        "heading": "Wrap once. <em>Gift forever.</em>",
-        "text": "<p>Beautiful, reusable gift wrap that makes every gift feel considered—without the tape, scissors, or waste.</p>",
-        "primary_label": "Shop all wraps",
-        "primary_link": "shopify://collections/shop-all",
-        "secondary_label": "Shop starter sets",
-        "secondary_link": "shopify://collections/bulk",
-        "color_scheme": "scheme-5"
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about EverWrap"
       }
     },
     "collection_list": {
