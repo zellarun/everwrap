@@ -1,1 +1,48 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"link_list":{"type":"link_list","settings":{"heading":"Quick links","menu":"footer"}}},"block_order":["link_list"],"settings":{"color_scheme":"scheme-4","newsletter_enable":true,"newsletter_heading":"Join the Wrap Revolution!","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand_message": {
+          "type": "text",
+          "settings": {
+            "heading": "Wrap once. Gift forever.",
+            "subtext": "<p>Beautiful reusable gift wrap for celebrations today, tomorrow, and years from now.</p>"
+          }
+        },
+        "shop_menu": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "menu": "main-menu"
+          }
+        },
+        "help_menu": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help & information",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": ["brand_message", "shop_menu", "help_menu"],
+      "settings": {
+        "color_scheme": "scheme-5",
+        "newsletter_enable": true,
+        "newsletter_heading": "Thoughtful gifting, delivered",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 64,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": ["footer"]
+}
