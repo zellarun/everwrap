@@ -176,6 +176,22 @@ a:not(.button) {
   }
 }
 
+@media screen and (min-width: 990px) and (max-width: 1099px) {
+  .header.page-width {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .header__menu-item {
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .header__inline-menu summary.list-menu__item {
+    padding-right: 1.7rem;
+  }
+}
+
 .header__menu-item span {
   text-decoration: none;
 }
