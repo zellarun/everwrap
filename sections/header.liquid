@@ -40,7 +40,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 12px;
   }
 
   .list-menu--inline {
@@ -103,6 +102,15 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .header__menu-item {
+  height: 4.4rem;
+  padding: 0 1.4rem;
+  color: var(--everwrap-ink);
+  font-size: 1.25rem;   ← change this (1.5rem = 15px, 1.6rem = 16px)
+  font-weight: 500;
+}
+
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
