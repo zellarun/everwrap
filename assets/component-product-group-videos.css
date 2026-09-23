@@ -15,10 +15,21 @@
   list-style: none;
 }
 
+/* Wide screens: the video sits under the photo gallery in the left column.
+   Narrow screens (columns stacked): it sits above the description instead. */
 @media screen and (max-width: 749px) {
+  .product-group-videos--media {
+    display: none;
+  }
+
   .product-group-videos {
-    margin-top: 1.6rem;
-    padding: 0 1.5rem;
+    margin: 0 0 2.4rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .product-group-videos--info {
+    display: none;
   }
 }
 
