@@ -206,14 +206,15 @@ Settings → Custom data → Metaobjects → **Product group** → Add entry. Ea
 
 Nothing changes on the live store yet. The live theme doesn't read these fields until the new theme code is live (Step 6).
 
-### 5b. Videos for a specific color/size (optional)
+### 5b. Videos
 
-Videos show under the product photos, on desktop and phone. They change when a shopper switches options. If a product has no matching videos, nothing shows.
+Videos show under the product photos (under the photo carousel, in the left column on desktop; under the carousel on phones). If a product has no matching videos, nothing shows.
 
 1. Open the line's Product group entry (e.g. EverBag) → **Videos** → upload or pick the videos.
-2. Set each video's **alt text**: Content → **Files** → click the video → Alt text. The alt text says which products it belongs to.
+2. **Leave the alt text empty** and the video shows on every product in that line. That's how all 7 groups are set up today.
+3. Only if you want a video on **specific** colors/sizes, set its **alt text**: Content → **Files** → click the video → Alt text.
 
-A video shows on a product when its alt text contains **all** of that product's options (pattern **and** size). Capitals, commas and slashes don't matter.
+A video with alt text shows on a product only when that text contains **all** of the product's options (pattern **and** size). Capitals, commas and slashes don't matter.
 
 | Alt text | Shows on |
 |---|---|
@@ -223,6 +224,7 @@ A video shows on a product when its alt text contains **all** of that product's 
 | `Pink Bow` | the Pink EverBow |
 | `Snowflake` | the Snowflake charm |
 | `All` | every product in that line |
+| (empty) | every product in that line |
 
 - `Medium` on its own does **not** match anything. It also needs the pattern.
 - Videos show in the order they're listed in the Videos field.

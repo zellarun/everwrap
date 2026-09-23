@@ -154,10 +154,43 @@ a:not(.button) {
 
 .header__menu-item {
   height: 4.4rem;
-  padding: 0 1.4rem;
+  padding-bottom: 1rem;
+  padding-top: 1.5rem;
   color: var(--everwrap-ink);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
+}
+
+/* Narrow desktops: tighten the links so the menu stays on one line instead of wrapping. */
+@media screen and (min-width: 990px) and (max-width: 1259px) {
+  .header__menu-item {
+    padding: 0 0.8rem;
+    font-size: 1.15rem;
+  }
+
+  .header__inline-menu summary.list-menu__item {
+    padding-right: 2rem;
+  }
+
+  .header {
+    column-gap: 1.6rem;
+  }
+}
+
+@media screen and (min-width: 990px) and (max-width: 1099px) {
+  .header.page-width {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .header__menu-item {
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .header__inline-menu summary.list-menu__item {
+    padding-right: 1.7rem;
+  }
 }
 
 .header__menu-item span {
