@@ -1,7 +1,8 @@
 {% comment %}
   Renders videos from the product's group (the "videos" field on its product group metaobject).
-  A video shows when its alt text contains all of this product's group option values
-  (e.g. "Cozy Medium"), or the word "All". Renders nothing when no videos match.
+  A video with no alt text, or with "All" in it, shows on every product in the line. Otherwise it
+  shows only where the alt text contains all of this product's group option values (e.g. "Cozy
+  Medium"). Renders nothing when no videos match.
 
   Accepts:
   - product: {Object} product object.
@@ -52,7 +53,10 @@
         assign padded_alt = ' ' | append: alt | append: ' '
 
         assign is_match = false
-        if padded_alt contains ' all '
+        if alt == blank
+          # No alt text means the video belongs to the whole line.
+          assign is_match = true
+        elsif padded_alt contains ' all '
           assign is_match = true
         elsif option_1 != blank or option_2 != blank
           assign is_match = true
