@@ -153,11 +153,12 @@ a:not(.button) {
 }
 
 .header__menu-item {
-  height: 4.4rem;
-  padding: 0 1.4rem;
+  padding: 1.2rem 1.4rem;
   color: var(--everwrap-ink);
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .header__menu-item span {
