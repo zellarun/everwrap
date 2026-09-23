@@ -2,13 +2,13 @@
 
 Product titles below are the new SEO titles (see `docs/seo-copy-review.md`). Handles never change, so you can also search by handle.
 
-Goal: one product page experience per product line (EverBox, EverEnvelope, EverBag, EverTie, Accessories, Charms), Amazon-style. On any product in a line, shoppers see **photo swatches** for every pattern in that line and, where the line has sizes, **size pills with dimensions**. A pattern or size that isn't in stock together is blacked out. Collection pages keep showing each product as its own card.
+Goal: one product page experience per product line (EverBox, EverEnvelope, EverBag, EverTie, Starter Sets, Accessories, Charms), Amazon-style. On any product in a line, shoppers see **photo swatches** for every pattern in that line and, where the line has sizes, **size pills with dimensions**. A pattern or size that isn't in stock together is blacked out. Collection pages keep showing each product as its own card.
 
 How it works: the theme reads two new fields on each product (its pattern and size, e.g. **Buffalo Check** / **Medium**) plus one "Product group" entry per line that lists the products and the button order. No app, and no product is rebuilt, deleted or redirected.
 
 **Rules for this project**
 - Don't delete, archive, redirect or add variants to any product.
-- Don't edit the 8 starter sets (Shopify Bundles).
+- Don't change the starter sets' bundle setup (Shopify Bundles). Adding the two group fields to them is fine; importing them via CSV is not.
 - Type values exactly as written. Spelling, capitals and spaces must match between the product fields and the group entry.
 - Each product can be in **one** group only.
 - Shopify admin labels may differ slightly from what's written here.
@@ -61,6 +61,14 @@ Settings → Custom data → **Metaobjects** → Add definition
 
 - [ ] On "EverBox Collapsible Gift Box – Red & White, Small" (`everbox-cabin-mini`), change the tag `Cabin Colection` to `Cabin Collection`.
 
+**Mismatches found on the live store, 2026-09-22.** Each one makes a size or color look unavailable when it isn't. Values must match exactly between a product and its group entry.
+
+- [ ] **Red and Yellow EverBox** (`everbox-cabin-large`, `everbox-large`): Group option 2 says `XL`, but the EverBox group lists the size as `Extra Large`. Change both products to **Extra Large**. Until then, every size on those two pages is greyed out even though both are in stock.
+- [ ] **Green Buffalo Plaid EverBag**: the EverBag group lists the color as `Green Buffalo Check`, the product says `Green Buffalo Plaid`. Change the group entry's value to **Green Buffalo Plaid**. Until then that bag has no swatch at all.
+- [ ] **Blue Berry Foliage EverBag, Small** (`everbag-cabin-small`): the storefront can't find this product and it isn't in the EverBag group. Check whether it's unpublished or its handle changed, then add it to the group.
+- [ ] **EverBag group**: still lists the `Large` size and the `Blue` and `Black Grid` colors, which now belong to EverTie. Remove all three, plus the Large row from Option 2 details. Until then every EverBag page shows a greyed-out Large.
+- [ ] Also in the EverBag group, the color `Green Floral` has a stray space in front of it. Harmless (the theme trims it), but worth tidying.
+
 ---
 
 ## Step 3 — Pattern and size on each product
@@ -112,7 +120,19 @@ EverBag no longer includes a "Large" size — the two EverTie products below mov
 | EverTie Tie Gift Bag – Blue, Large | everbag-large-cotton-blue-tie-bag-with-satin-ribbon-closure | Blue |
 | EverTie Tie Gift Bag – Black Grid, Large | everbag-large-cotton-black-grid-tie-bag-with-satin-ribbon-closure | Black Grid |
 
-These two already have Group option 1 set from the CSV import (Blue / Black Grid). Their Group option 2 field can stay as "Large" or be cleared — it's ignored once the EverTie group entry below has no Option 2 name.
+These two already have Group option 1 set from the CSV import (Blue / Black Grid). Their Group option 2 field can stay as "Large" or be cleared — it's ignored once the EverTie group entry below has no Option 2 name. Nothing else to do on the products for EverTie — only the group entry in Step 5.
+
+### Starter Sets
+⚠️ These four are **Shopify Bundles**. Type these two values in the **bulk editor** (Products → select → Edit, or open each product's Metafields). **Don't** use the CSV importer on them — a bundle's variant and component data can be damaged by an import.
+
+| Product | Handle | Group option 1 (color) | Group option 2 (size) |
+|---|---|---|---|
+| Reusable Gift Wrap Starter Set – Small, Pink, Gold & Black | monthly-match-august-2025 | Pink, Gold & Black | Small |
+| Reusable Gift Wrap Starter Set – Medium, Pink, Gold & Black | small-starter-bundle-reusable-gift-wrap-bags-sustainable-foldable-eco-friendly-1 | Pink, Gold & Black | Medium |
+| Reusable Gift Wrap Starter Set – Medium, Green & Pink | medium-bundle-reusable-gift-wrap-bags-sustainable-foldable-eco-friendly-green-and-pink | Green & Pink | Medium |
+| Reusable Gift Wrap Starter Set – Large, Pink, Gold & Black | 13-piece-extra-strong-reusable-gift-wrap-collection-in-pink-gold-and-black-make-your-christmas-zero-waste-and-sustainable-with-reusable-gift-wrap-that-collapses-and-stores-for-use-year-after-year | Pink, Gold & Black | Large |
+
+Green & Pink only comes in Medium, so on that page Small and Large are greyed out with a line through them.
 
 ### Accessories (one row of swatches; leave Group option 2 empty)
 | Product | Handle | Group option 1 |
@@ -141,7 +161,7 @@ The Color and Size category fields are still worth filling in for Google Shoppin
 
 ---
 
-## Step 5 — Create the 6 Product group entries
+## Step 5 — Create the 7 Product group entries
 
 Settings → Custom data → Metaobjects → **Product group** → Add entry. Each `·` below is a separate entry in the list. The order sets the order of the swatches and pills.
 
@@ -167,6 +187,12 @@ Settings → Custom data → Metaobjects → **Product group** → Add entry. Ea
 - Option 1 name: **Color**. Values: Blue · Black Grid
 - Option 2 name, values and details: leave empty
 - Products: the 2 EverTie products above
+
+**Starter Sets**
+- Option 1 name: **Color**. Values: Pink, Gold & Black · Green & Pink
+- Option 2 name: **Size**. Values: Small · Medium · Large
+- Option 2 details: optional (e.g. the piece count for each size — the Large set is 13 pieces). Leave empty to show just the size names.
+- Products: the 4 starter sets above
 
 **Accessories**
 - Option 1 name: **Style**. Values: Black Bow · Navy Bow · Pink Bow · Red Bow · Gift Tags
@@ -235,8 +261,8 @@ The theme code is on git branch `feature/combined-listings-pdp`.
 **Specific checks**
 - [ ] **Swatches:** every pattern in the line shows as a photo tile. The current product's tile has a dark border. No titles or prices show in the picker.
 - [ ] **Size pills** show the dimensions under each size (e.g. "Medium · 11.5" x 9" x 7"").
-- [ ] **Blacked-out sizes:** on the Buffalo Check EverBag (Medium), Small is blacked out (dark tile/pill, dashed border) since it isn't Medium.
-- [ ] **Blacked-out patterns:** still on the Buffalo Check EverBag (Medium), any pattern swatch that doesn't come in Medium is also blacked out — not just the size pills.
+- [ ] **Greyed-out sizes:** on the Buffalo Check EverBag (Medium), Small is grey with a diagonal line and can't be tapped, since Buffalo Check isn't Small. Available sizes are white with a purple outline; the selected size is filled purple. Color swatches never grey out from a size — only from being sold out everywhere.
+- [ ] **Color order:** swatches run smallest to largest (all Small colors, then Medium, Large, Extra Large).
 - [ ] **EverTie:** EverTie shows as its own picker (Blue / Black Grid swatches only, no size pills), separate from EverBag.
 - [ ] **EverBox:** clicking the Red swatch opens the Red XL box at $19.99, and the XL pill shows 16" x 12" x 12".
 - [ ] **Accessories, Charms and EverTie:** one row of photo swatches and no size pills.

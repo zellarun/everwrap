@@ -62,19 +62,37 @@
   outline-offset: 0.2rem;
 }
 
-/* Blacked out (Amazon-style) instead of the theme's strikethrough for values that don't exist
-   in the currently selected option. */
-.product-group-picker .product-form__input--pill input[type='radio'].disabled:not(:checked) + label {
-  border-style: dashed;
-  border-color: rgba(var(--color-foreground), 0.3);
-  background-color: rgba(var(--color-foreground), 0.85);
-  color: rgba(255, 255, 255, 0.55);
-  text-decoration: none;
-  cursor: not-allowed;
+/* Size pills: white with plum text and outline; the selected size is filled plum. */
+.product-group-picker .product-form__input--pill input[type='radio'] + label {
+  border: 0.1rem solid var(--everwrap-plum, #3e385f);
+  background-color: #fff;
+  color: var(--everwrap-plum, #3e385f);
 }
 
-.product-group-picker .product-form__input--pill input[type='radio'].disabled:not(:checked) + label .product-group-picker__pill-detail {
-  opacity: 0.85;
+.product-group-picker .product-form__input--pill input[type='radio'] + label:hover {
+  border-color: var(--everwrap-plum, #3e385f);
+}
+
+.product-group-picker .product-form__input--pill input[type='radio']:checked + label {
+  background-color: var(--everwrap-plum, #3e385f);
+  color: #fff;
+}
+
+/* Sizes the selected color doesn't come in: grey text and outline, with a diagonal line
+   through the pill instead of the theme's strikethrough. */
+.product-group-picker .product-form__input--pill input[type='radio'].disabled:not(:checked) + label {
+  border-color: #c9c7cf;
+  background: #fff
+    linear-gradient(
+      to top right,
+      transparent calc(50% - 0.1rem),
+      #c9c7cf calc(50% - 0.1rem),
+      #c9c7cf calc(50% + 0.1rem),
+      transparent calc(50% + 0.1rem)
+    );
+  color: #a19fa8;
+  text-decoration: none;
+  cursor: not-allowed;
 }
 
 .product-group-picker .product-form__input--pill input[type='radio'] + .product-group-picker__pill {

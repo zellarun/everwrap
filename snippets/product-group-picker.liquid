@@ -7,9 +7,10 @@
   custom.group_option_1 and custom.group_option_2 metafields. The optional option_2_details list
   (e.g. dimensions) is shown under each pill, matched to option_2_values by position.
 
-  - Swatches: one per option 1 value that has a visible product, greyed out only when sold out.
-  - Pills: greyed out when the selected swatch doesn't come in that value (or it's sold out);
-    clicking one switches to the closest sibling that has it.
+  - Swatches: one per option 1 value that has a visible product, ordered by their smallest
+    option 2 value, greyed out only when sold out in every size.
+  - Pills: greyed out and not clickable when the selected swatch doesn't come in that value
+    (or it's sold out).
 
   Accepts:
   - product: {Object} product object.
@@ -122,6 +123,43 @@
         endfor
         assign option_values = joined_values | split: '|~|' | uniq
       endif
+
+      # Order the swatches smallest to largest: colors whose smallest size comes first in
+      # Option 2 values go first. Colors in the same size keep the group's order.
+      assign size_values = group.option_2_values.value
+      if position == 1 and size_values != blank
+        assign ordered_values = ''
+        assign seen_values = '|~|'
+        for raw_size in size_values
+          assign size_value = raw_size | strip
+          for raw_value in option_values
+            assign color_value = raw_value | strip
+            assign color_key = '|~|' | append: color_value | append: '|~|'
+            if color_value == blank or seen_values contains color_key
+              continue
+            endif
+            for sibling in siblings
+              assign sibling_color = sibling.metafields.custom.group_option_1.value | strip
+              assign sibling_size = sibling.metafields.custom.group_option_2.value | strip
+              if sibling_color == color_value and sibling_size == size_value
+                assign ordered_values = ordered_values | append: color_value | append: '|~|'
+                assign seen_values = seen_values | append: color_value | append: '|~|'
+                break
+              endif
+            endfor
+          endfor
+        endfor
+        # Colors without a listed size stay at the end.
+        for raw_value in option_values
+          assign color_value = raw_value | strip
+          assign color_key = '|~|' | append: color_value | append: '|~|'
+          unless color_value == blank or seen_values contains color_key
+            assign ordered_values = ordered_values | append: color_value | append: '|~|'
+            assign seen_values = seen_values | append: color_value | append: '|~|'
+          endunless
+        endfor
+        assign option_values = ordered_values | split: '|~|'
+      endif
     -%}
 
     {%- if option_name != blank -%}
@@ -209,7 +247,10 @@
             {% endunless %}
             {% if target %}
               data-product-url="{{ target.url }}"
-            {% else %}
+            {% endif %}
+            {% if target == nil %}
+              disabled
+            {% elsif position == 2 and is_available == false and is_selected == false %}
               disabled
             {% endif %}
           >
