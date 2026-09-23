@@ -160,6 +160,22 @@ a:not(.button) {
   font-weight: 500;
 }
 
+/* Narrow desktops: tighten the links so the menu stays on one line instead of wrapping. */
+@media screen and (min-width: 990px) and (max-width: 1259px) {
+  .header__menu-item {
+    padding: 0 0.8rem;
+    font-size: 1.15rem;
+  }
+
+  .header__inline-menu summary.list-menu__item {
+    padding-right: 2rem;
+  }
+
+  .header {
+    column-gap: 1.6rem;
+  }
+}
+
 .header__menu-item span {
   text-decoration: none;
 }
