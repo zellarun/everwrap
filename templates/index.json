@@ -30,6 +30,24 @@
             "color_scheme": "scheme-5"
           }
         },
+        "slide_khloe": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-09-22_at_6.13.29_PM.png",
+            "image_overlay_opacity": 20,
+            "heading": "<strong>Khloé Kardashian </strong>hid a puppy inside an EverBox!",
+            "heading_size": "h1",
+            "subheading": "Khloé Kardashian surprised her daughter with a puppy in the EverBox Extra Large. Seen on YouTube — she bought hers.",
+            "button_label": "Shop the EverBox",
+            "link": "shopify://products/everbox-cabin-large",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-5"
+          }
+        },
         "slide_store_flat": {
           "type": "slide",
           "settings": {
@@ -65,54 +83,17 @@
             "text_alignment_mobile": "center",
             "color_scheme": "scheme-5"
           }
-        },
-        "slide_khloe": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/livingroomcozy_24ea13fe-932e-4641-b7bb-c3d41550e056.jpg",
-            "image_overlay_opacity": 60,
-            "heading": "<strong>She hid a puppy inside an EverBox.</strong>",
-            "heading_size": "h1",
-            "subheading": "Khloé Kardashian surprised her daughter with a puppy in the EverBox XL. Seen on YouTube — she bought hers.",
-            "button_label": "Shop the EverBox XL",
-            "link": "shopify://products/everbox-cabin-large",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-5"
-          }
-        },
-        "slide_cassidy": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/File_041.jpg",
-            "image_overlay_opacity": 60,
-            "heading": "<strong>Gift wrapped in seconds, on camera.</strong>",
-            "heading_size": "h1",
-            "subheading": "Paid partnership with @classicallycassidy — watch her wrap a gift with EverWrap, no tape required.",
-            "button_label": "Shop all wraps",
-            "link": "shopify://collections/shop-all",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-5"
-          }
         }
       },
       "block_order": [
         "slide_better_way",
         "slide_khloe",
-        "slide_cassidy",
         "slide_store_flat",
         "slide_mission"
       ],
       "settings": {
         "layout": "full_bleed",
-        "slide_height": "small",
+        "slide_height": "medium",
         "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 5,
