@@ -86,16 +86,22 @@
     "collection_list": {
       "type": "collection-list",
       "blocks": {
-        "collection_bags": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "reusable-gift-bags"
-          }
-        },
         "collection_boxes": {
           "type": "featured_collection",
           "settings": {
             "collection": "reusable-gift-boxes"
+          }
+        },
+        "featured_collection_7DbLCf": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "everties"
+          }
+        },
+        "collection_bags": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "reusable-gift-bags"
           }
         },
         "collection_envelopes": {
@@ -109,25 +115,98 @@
           "settings": {
             "collection": "bows-and-charms"
           }
+        },
+        "featured_collection_kJHCNX": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bestsellers"
+          }
         }
       },
       "block_order": [
-        "collection_bags",
         "collection_boxes",
+        "featured_collection_7DbLCf",
+        "collection_bags",
         "collection_envelopes",
-        "collection_details"
+        "collection_details",
+        "featured_collection_kJHCNX"
       ],
       "settings": {
         "title": "Find your perfect wrap",
         "heading_size": "h1",
         "image_ratio": "square",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "color_scheme": "scheme-1",
-        "show_view_all": true,
+        "show_view_all": false,
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 72,
         "padding_bottom": 72
+      }
+    },
+    "video_gallery": {
+      "type": "video-gallery",
+      "blocks": {
+        "video_youtube_1": {
+          "type": "video",
+          "settings": {
+            "youtube_url": "https://www.youtube.com/watch?v=elE2LgM9w38",
+            "start_time": "1:35",
+            "end_time": "3:56",
+            "orientation": "landscape",
+            "caption": "See how quickly EverWrap turns a gift into something special."
+          }
+        },
+        "video_frame3": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Frame 3.mov",
+            "youtube_url": "",
+            "start_time": "",
+            "end_time": "",
+            "orientation": "vertical",
+            "caption": "Fold, fasten, and gift—no extra supplies needed."
+          }
+        },
+        "video_youtube_2": {
+          "type": "video",
+          "settings": {
+            "youtube_url": "https://www.youtube.com/watch?v=H-VTrb3yVh4",
+            "start_time": "5:20",
+            "end_time": "13:41",
+            "orientation": "landscape",
+            "caption": "Thoughtful gifting can be simple and sustainable."
+          }
+        }
+      },
+      "block_order": [
+        "video_youtube_1",
+        "video_frame3",
+        "video_youtube_2"
+      ],
+      "settings": {
+        "heading": "See EverWrap in action",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    },
+    "reviews": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1160
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "starter_sets": {
@@ -212,71 +291,6 @@
         "color_scheme": "scheme-3",
         "padding_top": 88,
         "padding_bottom": 88
-      }
-    },
-    "video_gallery": {
-      "type": "video-gallery",
-      "blocks": {
-        "video_youtube_1": {
-          "type": "video",
-          "settings": {
-            "youtube_url": "https://www.youtube.com/watch?v=elE2LgM9w38",
-            "start_time": "1:35",
-            "end_time": "3:56",
-            "orientation": "landscape",
-            "caption": "See how quickly EverWrap turns a gift into something special."
-          }
-        },
-        "video_frame3": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/Frame 3.mov",
-            "youtube_url": "",
-            "start_time": "",
-            "end_time": "",
-            "orientation": "vertical",
-            "caption": "Fold, fasten, and gift—no extra supplies needed."
-          }
-        },
-        "video_youtube_2": {
-          "type": "video",
-          "settings": {
-            "youtube_url": "https://www.youtube.com/watch?v=H-VTrb3yVh4",
-            "start_time": "5:20",
-            "end_time": "13:41",
-            "orientation": "landscape",
-            "caption": "Thoughtful gifting can be simple and sustainable."
-          }
-        }
-      },
-      "block_order": [
-        "video_youtube_1",
-        "video_frame3",
-        "video_youtube_2"
-      ],
-      "settings": {
-        "heading": "See EverWrap in action",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 88,
-        "padding_bottom": 88
-      }
-    },
-    "reviews": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews": {
-          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "maxwidth": 1160
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews"
-      ],
-      "settings": {
-        "include_margins": true
       }
     },
     "journal": {
@@ -380,10 +394,10 @@
   "order": [
     "everwrap_hero",
     "collection_list",
-    "starter_sets",
-    "brand_story",
     "video_gallery",
     "reviews",
+    "starter_sets",
+    "brand_story",
     "journal",
     "closing_statement",
     "newsletter_popup"
