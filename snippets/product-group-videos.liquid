@@ -6,9 +6,11 @@
 
   Accepts:
   - product: {Object} product object.
+  - placement: {String} optional. 'media' renders under the photo gallery (desktop only),
+    'info' renders above the description (narrow screens only, where the columns stack).
 
   Usage:
-  {% render 'product-group-videos', product: product %}
+  {% render 'product-group-videos', product: product, placement: 'media' %}
 {% endcomment %}
 {%- liquid
   # Find the product group entry that lists this product (types product_group, product or products).
@@ -96,7 +98,7 @@
 
   {%- if video_items != blank -%}
     {{ 'component-product-group-videos.css' | asset_url | stylesheet_tag }}
-    <ul class="product-group-videos" role="list">
+    <ul class="product-group-videos{% if placement != blank %} product-group-videos--{{ placement }}{% endif %}" role="list">
       {{ video_items }}
     </ul>
   {%- endif -%}

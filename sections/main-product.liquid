@@ -82,7 +82,7 @@
         {%- endcomment -%}
         <div class="product__media-stack{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
           {% render 'product-media-gallery', variant_images: variant_images %}
-          {% render 'product-group-videos', product: product %}
+          {% render 'product-group-videos', product: product, placement: 'media' %}
         </div>
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -187,6 +187,11 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
+                {%- comment -%}
+                  On narrow screens the two columns stack, so the video sits here, right above
+                  the description, instead of between the photos and the title.
+                {%- endcomment -%}
+                {% render 'product-group-videos', product: product, placement: 'info' %}
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
