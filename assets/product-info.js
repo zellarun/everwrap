@@ -96,12 +96,11 @@ if (!customElements.get('product-info')) {
           if (updateFullPage) {
             document.querySelector('head title').innerHTML = html.querySelector('head title').innerHTML;
 
-            HTMLUpdateUtility.viewTransition(
-              document.querySelector('main'),
-              html.querySelector('main'),
-              this.preProcessHtmlCallbacks,
-              this.postProcessHtmlCallbacks
-            );
+            const main = document.querySelector('main');
+            HTMLUpdateUtility.viewTransition(main, html.querySelector('main'), this.preProcessHtmlCallbacks, [
+              ...this.postProcessHtmlCallbacks,
+              this.keepPreservedNodes(main),
+            ]);
           } else {
             HTMLUpdateUtility.viewTransition(
               this,
@@ -110,6 +109,26 @@ if (!customElements.get('product-info')) {
               this.postProcessHtmlCallbacks
             );
           }
+        };
+      }
+
+      // Keep marked app content (such as reviews) intact when a grouped product is swapped.
+      keepPreservedNodes(oldRoot) {
+        const preserved = Array.from(oldRoot.querySelectorAll('[data-product-swap-preserve]')).map((node) => ({
+          node,
+          ids: [node, ...node.querySelectorAll('[id]')].filter(({ id }) => id).map((element) => [element, element.id]),
+        }));
+
+        return (newRoot) => {
+          preserved.forEach(({ node, ids }) => {
+            const replacement = newRoot.querySelector(
+              `[data-product-swap-preserve="${CSS.escape(node.dataset.productSwapPreserve)}"]`
+            );
+            if (!replacement) return;
+
+            ids.forEach(([element, id]) => (element.id = id));
+            replacement.replaceWith(node);
+          });
         };
       }
 
