@@ -1,0 +1,105 @@
+{% comment %}
+  Renders videos from the product's group (the "videos" field on its product group metaobject).
+  A video with no alt text, or with "All" in it, shows on every product in the line. Otherwise it
+  shows only where the alt text contains all of this product's group option values (e.g. "Cozy
+  Medium"). Renders nothing when no videos match.
+
+  Accepts:
+  - product: {Object} product object.
+  - placement: {String} optional. 'media' renders under the photo gallery (desktop only),
+    'info' renders above the description (narrow screens only, where the columns stack).
+
+  Usage:
+  {% render 'product-group-videos', product: product, placement: 'media' %}
+{% endcomment %}
+{%- liquid
+  # Find the product group entry that lists this product (types product_group, product or products).
+  assign product_group = nil
+  if product.has_only_default_variant
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      for group_entry in shop.metaobjects[group_type].values
+        for group_product in group_entry.products.value
+          if group_product.id == product.id
+            assign product_group = group_entry
+            break
+          endif
+        endfor
+        if product_group != nil
+          break
+        endif
+      endfor
+      if product_group != nil
+        break
+      endif
+    endfor
+  endif
+-%}
+
+{%- if product_group and product_group.videos.value != blank -%}
+  {%- liquid
+    assign option_1 = product.metafields.custom.group_option_1.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | split: ' ' | join: ' '
+    assign option_2 = product.metafields.custom.group_option_2.value | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | split: ' ' | join: ' '
+    assign padded_option_1 = ' ' | append: option_1 | append: ' '
+    assign padded_option_2 = ' ' | append: option_2 | append: ' '
+  -%}
+
+  {%- capture video_items -%}
+    {%- for video in product_group.videos.value -%}
+      {%- liquid
+        if video.media_type != 'video'
+          continue
+        endif
+
+        assign alt = video.alt | downcase | replace: ',', ' ' | replace: '/', ' ' | replace: '|', ' ' | replace: '+', ' ' | strip_newlines | split: ' ' | join: ' '
+        assign padded_alt = ' ' | append: alt | append: ' '
+
+        assign is_match = false
+        if alt == blank
+          # No alt text means the video belongs to the whole line.
+          assign is_match = true
+        elsif padded_alt contains ' all '
+          assign is_match = true
+        elsif option_1 != blank or option_2 != blank
+          assign is_match = true
+          if option_1 != blank
+            unless padded_alt contains padded_option_1
+              assign is_match = false
+            endunless
+          endif
+          if option_2 != blank
+            unless padded_alt contains padded_option_2
+              assign is_match = false
+            endunless
+          endif
+        endif
+
+        unless is_match
+          continue
+        endunless
+      -%}
+      <li
+        class="product-group-videos__item{% if video.aspect_ratio < 1 %} product-group-videos__item--vertical{% endif %}"
+        style="--ratio: {{ video.aspect_ratio | default: 1.7778 }};"
+      >
+        <div class="product-group-videos__media">
+          {{
+            video
+            | video_tag:
+              controls: true,
+              playsinline: true,
+              preload: 'metadata',
+              image_size: '1100x'
+          }}
+        </div>
+      </li>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if video_items != blank -%}
+    {{ 'component-product-group-videos.css' | asset_url | stylesheet_tag }}
+    <ul class="product-group-videos{% if placement != blank %} product-group-videos--{{ placement }}{% endif %}" role="list">
+      {{ video_items }}
+    </ul>
+  {%- endif -%}
+{%- endif -%}

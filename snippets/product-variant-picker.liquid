@@ -8,7 +8,78 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
-{%- unless product.has_only_default_variant -%}
+{%- liquid
+  # Find the product group entry that lists this product (types product_group, product or products).
+  assign product_group = nil
+  if product.has_only_default_variant
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      for group_entry in shop.metaobjects[group_type].values
+        for group_product in group_entry.products.value
+          if group_product.id == product.id
+            assign product_group = group_entry
+            break
+          endif
+        endfor
+        if product_group != nil
+          break
+        endif
+      endfor
+      if product_group != nil
+        break
+      endif
+    endfor
+  endif
+-%}
+{%- if request.design_mode and product_group == nil and product.has_only_default_variant -%}
+  {%- liquid
+    assign group_count = 0
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      assign type_count = shop.metaobjects[group_type].values | size
+      assign group_count = group_count | plus: type_count
+    endfor
+    if group_count == 0
+      assign notice = 'The theme can’t see any product group entries (it looks for the metaobject types product_group, product and products). Check that the definition’s Storefronts access is on and the entries are Active.'
+    else
+      assign notice = 'This product isn’t in the Products list of any Product group (' | append: group_count | append: ' group entries found). Products that shouldn’t be grouped can ignore this.'
+      assign entry_report = ''
+      assign listed_total = 0
+      for group_type in group_types
+        for group_entry in shop.metaobjects[group_type].values
+          assign listed = group_entry.products.value | size
+          assign listed_total = listed_total | plus: listed
+          assign entry_label = group_entry.name.value | default: group_entry.system.handle
+          assign entry_report = entry_report | append: entry_label | append: ' (' | append: group_type | append: '): ' | append: listed | append: ' products readable|'
+        endfor
+      endfor
+      if listed_total == 0
+        assign notice = notice | append: ' None of the entries have a readable Products list, so the Products field’s key is probably not exactly "products". Check the field’s key in the metaobject definition.'
+      endif
+      assign entry_report = entry_report | split: '|'
+    endif
+  -%}
+  {{ 'component-product-group-picker.css' | asset_url | stylesheet_tag }}
+  <div class="product-group-picker__notice">
+    <strong>Product group setup (only visible in the theme editor):</strong>
+    <ul>
+      <li>{{ notice | escape }}</li>
+      {%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+      <li>Matched entry: {{ group_ref | default: 'none' | escape }}</li>
+      {%- for line in entry_report -%}
+        <li>{{ line | escape }}</li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+{%- if product_group -%}
+  {% render 'product-group-picker',
+    product: product,
+    group: product_group,
+    block: block,
+    product_form_id: product_form_id
+  %}
+{%- elsif product.has_only_default_variant == false -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -91,4 +162,4 @@
       {{ product.selected_or_first_available_variant | json }}
     </script>
   </variant-selects>
-{%- endunless -%}
+{%- endif -%}

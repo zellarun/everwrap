@@ -1,0 +1,35 @@
+{% comment %}
+  Outputs "<type>.<handle>" for the first product group entry that lists this product, or nothing.
+  The group definition may use the metaobject type product_group, product or products.
+  Only single-variant products can belong to a group.
+
+  Accepts:
+  - product: {Object} product object.
+
+  Usage:
+  {%- capture group_ref -%}{% render 'product-group-handle', product: product %}{%- endcapture -%}
+  Then loop shop.metaobjects[<type>].values to find the entry whose system.handle matches.
+{% endcomment %}
+{%- liquid
+  assign found_ref = ''
+  if product.has_only_default_variant
+    assign group_types = 'product_group,product,products' | split: ','
+    for group_type in group_types
+      for group_entry in shop.metaobjects[group_type].values
+        for group_product in group_entry.products.value
+          if group_product.id == product.id
+            assign found_ref = group_type | append: '.' | append: group_entry.system.handle
+            break
+          endif
+        endfor
+        if found_ref != ''
+          break
+        endif
+      endfor
+      if found_ref != ''
+        break
+      endif
+    endfor
+  endif
+  echo found_ref
+-%}

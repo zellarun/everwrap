@@ -5,29 +5,15 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "brand_message": {
-          "type": "text",
-          "settings": {
-            "heading": "Wrap once. Gift forever.",
-            "subtext": "<p>Beautiful reusable gift wrap for celebrations today, tomorrow, and years from now.</p>"
-          }
-        },
-        "shop_menu": {
+        "link_list": {
           "type": "link_list",
           "settings": {
-            "heading": "Shop",
-            "menu": "main-menu"
-          }
-        },
-        "help_menu": {
-          "type": "link_list",
-          "settings": {
-            "heading": "Help & information",
+            "heading": "Explore",
             "menu": "footer"
           }
         }
       },
-      "block_order": ["brand_message", "shop_menu", "help_menu"],
+      "block_order": ["link_list"],
       "settings": {
         "color_scheme": "scheme-5",
         "newsletter_enable": true,
